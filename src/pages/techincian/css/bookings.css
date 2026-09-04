@@ -1094,3 +1094,44 @@
     width: 100%;
   }
 }
+/* ==========================================
+   SERVICE HISTORY
+========================================== */
+
+.booking-history-section {
+  margin-top: 28px;
+}
+
+.booking-history-footer {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid #e2e8f0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.booking-history-footer span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.booking-history-footer strong {
+  font-size: 12px;
+  font-weight: 600;
+  color: #2563eb;
+}
+
+@media (max-width: 768px) {
+  .booking-history-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
