@@ -1,0 +1,1133 @@
+/* =========================================================
+   SMART SERVICE BOOKING
+   ADMIN SERVICES
+   LIGHT BLUE / WHITE PROFESSIONAL THEME
+========================================================= */
+
+:root {
+  --primary: #2f80ed;
+  --primary-dark: #2563eb;
+
+  --primary-soft: #eaf3ff;
+  --primary-soft-hover: #e3efff;
+  --primary-border: #cfe2ff;
+
+  --page-bg: #f4f8fc;
+  --surface: #ffffff;
+
+  --text-main: #172033;
+  --text-dark: #334155;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+
+  --border: #e2e8f0;
+  --border-light: #edf1f5;
+
+  --success-bg: #f0fdf4;
+  --success-text: #15803d;
+
+  --danger-bg: #fef2f2;
+  --danger-border: #fecaca;
+  --danger-text: #dc2626;
+}
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.admin-services-page {
+  width: 100%;
+  max-width: 1500px;
+
+  min-height: calc(100vh - 72px);
+
+  margin: 0 auto;
+
+  padding: 34px 40px 45px;
+
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f7faff 0%,
+      #f3f7fc 100%
+    );
+
+  color: var(--text-main);
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.services-header {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 25px;
+
+  margin-bottom: 28px;
+}
+
+.services-header span {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: var(--primary);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.6px;
+}
+
+.services-header h1 {
+  margin: 0;
+
+  color: var(--text-main);
+
+  font-size: 32px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.7px;
+}
+
+.services-header p {
+  margin: 8px 0 0;
+
+  color: var(--text-muted);
+
+  font-size: 13px;
+}
+
+/* =========================================================
+   ADD SERVICE
+========================================================= */
+
+.add-service-btn {
+  min-height: 41px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  padding: 0 16px;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background: var(--primary);
+
+  color: #ffffff;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 7px 17px rgba(47, 128, 237, 0.16);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.add-service-btn:hover {
+  background: var(--primary-dark);
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 22px rgba(47, 128, 237, 0.22);
+}
+
+/* =========================================================
+   SUCCESS
+========================================================= */
+
+.service-success {
+  margin-bottom: 18px;
+
+  padding: 13px 16px;
+
+  border:
+    1px solid #bbf7d0;
+
+  border-radius: 10px;
+
+  background: var(--success-bg);
+
+  color: var(--success-text);
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.service-error {
+  margin-bottom: 18px;
+
+  padding: 13px 16px;
+
+  border:
+    1px solid var(--danger-border);
+
+  border-radius: 10px;
+
+  background: var(--danger-bg);
+
+  color: var(--danger-text);
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+/* =========================================================
+   FORM CARD
+========================================================= */
+
+.service-form-card {
+  margin-bottom: 22px;
+
+  padding: 24px;
+
+  background: #ffffff;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 15px;
+
+  box-shadow:
+    0 7px 24px rgba(15, 23, 42, 0.04);
+}
+
+/* =========================================================
+   FORM TITLE
+========================================================= */
+
+.form-title {
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 22px;
+}
+
+.form-title span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: var(--primary);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.4px;
+}
+
+.form-title h2 {
+  margin: 0;
+
+  color: var(--text-main);
+
+  font-size: 20px;
+
+  font-weight: 800;
+}
+
+/* =========================================================
+   CLOSE
+========================================================= */
+
+.close-form-btn {
+  width: 36px;
+
+  height: 36px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border:
+    1px solid var(--border-light);
+
+  border-radius: 9px;
+
+  background: #f8fafc;
+
+  color: var(--text-muted);
+
+  font-size: 15px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.close-form-btn:hover {
+  background: var(--primary-soft);
+
+  border-color: var(--primary-border);
+
+  color: var(--primary);
+}
+
+/* =========================================================
+   FORM GRID
+========================================================= */
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 17px;
+}
+
+.form-group {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+
+  margin-bottom: 17px;
+}
+
+.form-group label {
+  color: var(--text-dark);
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 12px 13px;
+
+  border:
+    1px solid #dce4ed;
+
+  border-radius: 9px;
+
+  outline: none;
+
+  background: #f8fafc;
+
+  color: var(--text-main);
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.form-group textarea {
+  resize: vertical;
+
+  min-height: 105px;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #a0aab7;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  background: #ffffff;
+
+  border-color: var(--primary);
+
+  box-shadow:
+    0 0 0 3px rgba(47, 128, 237, 0.08);
+}
+
+.form-group input:disabled {
+  background: #f1f5f9;
+
+  color: var(--text-light);
+
+  cursor: not-allowed;
+}
+
+.form-group small {
+  color: var(--text-light);
+
+  font-size: 10px;
+
+  text-align: right;
+}
+
+/* =========================================================
+   FORM ACTIONS
+========================================================= */
+
+.form-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  margin-top: 5px;
+}
+
+.cancel-btn,
+.save-btn {
+  min-height: 40px;
+
+  padding: 0 17px;
+
+  border-radius: 9px;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.cancel-btn {
+  border:
+    1px solid var(--border);
+
+  background: #f8fafc;
+
+  color: var(--text-dark);
+}
+
+.cancel-btn:hover:not(:disabled) {
+  background: #eef3f8;
+
+  transform: translateY(-1px);
+}
+
+.save-btn {
+  border: none;
+
+  background: var(--primary);
+
+  color: #ffffff;
+
+  box-shadow:
+    0 6px 15px rgba(47, 128, 237, 0.14);
+}
+
+.save-btn:hover:not(:disabled) {
+  background: var(--primary-dark);
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 9px 20px rgba(47, 128, 237, 0.19);
+}
+
+.save-btn:disabled,
+.cancel-btn:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   SERVICES CARD
+========================================================= */
+
+.services-card {
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 15px;
+
+  box-shadow:
+    0 7px 24px rgba(15, 23, 42, 0.045);
+}
+
+/* =========================================================
+   CARD HEADING
+========================================================= */
+
+.card-heading {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 21px 24px;
+
+  border-bottom:
+    1px solid var(--border-light);
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff,
+      #fbfdff
+    );
+}
+
+.card-heading h2 {
+  margin: 0;
+
+  color: var(--text-main);
+
+  font-size: 19px;
+
+  font-weight: 800;
+}
+
+.card-heading p {
+  margin: 5px 0 0;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+}
+
+.card-heading > span {
+  padding: 7px 11px;
+
+  border-radius: 20px;
+
+  background: var(--primary-soft);
+
+  color: var(--primary);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.services-table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+}
+
+.services-table {
+  width: 100%;
+
+  min-width: 950px;
+
+  border-collapse: collapse;
+}
+
+.services-table th {
+  padding: 14px 17px;
+
+  background: #f8fafc;
+
+  color: #718096;
+
+  text-align: left;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.7px;
+
+  white-space: nowrap;
+}
+
+.services-table td {
+  padding: 16px 17px;
+
+  border-top:
+    1px solid var(--border-light);
+
+  color: var(--text-dark);
+
+  font-size: 11px;
+
+  vertical-align: middle;
+}
+
+.services-table tbody tr {
+  transition:
+    background 0.2s ease;
+}
+
+.services-table tbody tr:hover {
+  background: #f8fbff;
+}
+
+/* =========================================================
+   SERVICE INFO
+========================================================= */
+
+.service-name {
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  min-width: 250px;
+}
+
+.service-icon {
+  width: 42px;
+
+  height: 42px;
+
+  min-width: 42px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: var(--primary-soft);
+
+  color: var(--primary);
+
+  border:
+    1px solid var(--primary-border);
+}
+
+.service-name strong {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: var(--text-main);
+
+  font-size: 11px;
+}
+
+.service-name small {
+  display: block;
+
+  max-width: 260px;
+
+  color: var(--text-light);
+
+  font-size: 9px;
+
+  line-height: 1.45;
+}
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+.category-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 6px 10px;
+
+  border:
+    1px solid var(--primary-border);
+
+  border-radius: 20px;
+
+  background: var(--primary-soft);
+
+  color: var(--primary);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   PRICE
+========================================================= */
+
+.service-price {
+  color: var(--primary);
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   PROVIDER
+========================================================= */
+
+.services-table td:nth-child(5) {
+  color: var(--text-dark);
+
+  font-weight: 600;
+}
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.action-buttons {
+  display: flex;
+
+  gap: 7px;
+
+  flex-wrap: wrap;
+}
+
+.edit-btn,
+.delete-btn {
+  border: none;
+
+  min-height: 32px;
+
+  padding: 0 10px;
+
+  border-radius: 8px;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.edit-btn {
+  background: var(--primary-soft);
+
+  color: var(--primary);
+}
+
+.edit-btn:hover {
+  background: var(--primary-soft-hover);
+
+  transform: translateY(-1px);
+}
+
+.delete-btn {
+  background: var(--danger-bg);
+
+  color: var(--danger-text);
+}
+
+.delete-btn:hover {
+  background: #fee2e2;
+
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading {
+  min-height: 230px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 11px;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+}
+
+.service-spinner {
+  width: 34px;
+
+  height: 34px;
+
+  border: 4px solid #dceaff;
+
+  border-top-color: var(--primary);
+
+  border-radius: 50%;
+
+  animation:
+    serviceSpin 0.8s linear infinite;
+}
+
+@keyframes serviceSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty-services {
+  min-height: 260px;
+
+  padding: 60px 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+}
+
+.empty-service-icon {
+  width: 55px;
+
+  height: 55px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-bottom: 12px;
+
+  border-radius: 13px;
+
+  background: var(--primary-soft);
+
+  color: var(--primary);
+
+  font-size: 22px;
+}
+
+.empty-services h3 {
+  margin: 4px 0 7px;
+
+  color: var(--text-main);
+
+  font-size: 18px;
+
+  font-weight: 800;
+}
+
+.empty-services p {
+  margin: 0;
+
+  color: var(--text-light);
+
+  font-size: 11px;
+}
+
+.empty-add-btn {
+  margin-top: 15px;
+
+  min-height: 38px;
+
+  padding: 0 15px;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background: var(--primary);
+
+  color: #ffffff;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.empty-add-btn:hover {
+  background: var(--primary-dark);
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 7px 16px rgba(47, 128, 237, 0.16);
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+.services-table-wrapper::-webkit-scrollbar {
+  height: 7px;
+}
+
+.services-table-wrapper::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+.services-table-wrapper::-webkit-scrollbar-thumb {
+  background: #cfe2ff;
+
+  border-radius: 20px;
+}
+
+.services-table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #a9c9f7;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+  .admin-services-page {
+    padding: 28px 25px 40px;
+  }
+
+  .services-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .add-service-btn {
+    width: 100%;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-services-page {
+    padding: 20px 15px 35px;
+  }
+
+  .services-header h1 {
+    font-size: 27px;
+  }
+
+  .service-form-card {
+    padding: 18px;
+  }
+
+  .card-heading {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    padding: 18px;
+  }
+
+  .card-heading > span {
+    align-self: flex-start;
+  }
+
+  .services-card {
+    border-radius: 13px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .cancel-btn,
+  .save-btn {
+    width: 100%;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+}
+/* =========================================================
+   DURATION INPUTS
+========================================================= */
+
+.duration-group {
+  min-width: 0;
+}
+
+.duration-inputs {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 8px;
+}
+
+.duration-field {
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 0 10px;
+
+  box-sizing: border-box;
+
+  border:
+    1px solid #dce4ed;
+
+  border-radius: 9px;
+
+  background: #f8fafc;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.duration-field:focus-within {
+  background: #ffffff;
+
+  border-color: var(--primary);
+
+  box-shadow:
+    0 0 0 3px rgba(47, 128, 237, 0.08);
+}
+
+.duration-field svg {
+  flex-shrink: 0;
+
+  color: var(--primary);
+}
+
+.duration-field input {
+  width: 100%;
+
+  height: 100%;
+
+  padding: 0;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  color: var(--text-main);
+
+  font-size: 12px;
+}
+
+.duration-field span {
+  flex-shrink: 0;
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+.duration-group small {
+  display: block;
+
+  margin-top: 5px;
+
+  color: var(--text-light);
+
+  font-size: 9px;
+}
+
+.service-duration {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  color: var(--text-dark);
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+.service-duration svg {
+  color: var(--primary);
+}
+
+/* =========================================================
+   DURATION MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .duration-inputs {
+    grid-template-columns: 1fr 1fr;
+  }
+}

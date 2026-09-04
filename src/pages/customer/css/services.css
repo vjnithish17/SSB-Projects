@@ -1,0 +1,650 @@
+/* =========================================================
+   SMART SERVICE BOOKING
+   CUSTOMER SERVICES
+   LIGHT BLUE / WHITE PROFESSIONAL THEME
+========================================================= */
+
+:root {
+  --primary: #2f80ed;
+  --primary-dark: #2563eb;
+
+  --primary-soft: #eaf3ff;
+  --primary-soft-hover: #e3efff;
+  --primary-border: #cfe2ff;
+
+  --page-bg: #f4f8fc;
+  --card-bg: #ffffff;
+
+  --text-main: #172033;
+  --text-dark: #334155;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+
+  --border: #e2e8f0;
+  --border-light: #edf1f5;
+
+  --success-bg: #f0fdf4;
+  --success-border: #bbf7d0;
+  --success-text: #15803d;
+
+  --danger-bg: #fef2f2;
+  --danger-border: #fecaca;
+  --danger-text: #dc2626;
+}
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.services-page {
+  width: 100%;
+
+  min-height: calc(100vh - 72px);
+
+  box-sizing: border-box;
+
+  padding: 34px 40px 45px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f7faff 0%,
+      #f3f7fc 100%
+    );
+
+  color: var(--text-main);
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.services-header {
+  max-width: 1500px;
+
+  margin: 0 auto 30px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 25px;
+}
+
+.services-header-content {
+  min-width: 0;
+}
+
+.services-label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: var(--primary);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.6px;
+}
+
+.services-header h1 {
+  margin: 0;
+
+  color: var(--text-main);
+
+  font-size: 32px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.6px;
+}
+
+.services-header p {
+  max-width: 700px;
+
+  margin: 8px 0 0;
+
+  color: var(--text-muted);
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+/* =========================================================
+   BACK DASHBOARD BUTTON
+========================================================= */
+
+.back-dashboard-btn {
+  min-height: 40px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  padding: 0 15px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.back-dashboard-btn:hover {
+  border-color: var(--primary-border);
+
+  background: var(--primary-soft);
+
+  color: var(--primary);
+
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.services-error {
+  max-width: 1500px;
+
+  margin: 0 auto 20px;
+
+  padding: 13px 16px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  border:
+    1px solid var(--danger-border);
+
+  border-radius: 10px;
+
+  background: var(--danger-bg);
+
+  color: #dc2626;
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+/* =========================================================
+   SERVICE GRID
+========================================================= */
+
+.services-grid {
+  max-width: 1500px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 18px;
+}
+
+/* =========================================================
+   SERVICE CARD
+========================================================= */
+
+.service-card {
+  position: relative;
+
+  overflow: hidden;
+
+  min-height: 330px;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  flex-direction: column;
+
+  padding: 21px;
+
+  background: var(--card-bg);
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 15px;
+
+  box-shadow:
+    0 7px 24px rgba(15, 23, 42, 0.04);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+/* TOP BLUE ACCENT */
+
+.service-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  right: 0;
+
+  height: 3px;
+
+  background: var(--primary);
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+
+  border-color: var(--primary-border);
+
+  box-shadow:
+    0 16px 35px rgba(47, 128, 237, 0.09);
+}
+
+/* =========================================================
+   CARD TOP
+========================================================= */
+
+.service-card-top {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-bottom: 20px;
+}
+
+.service-icon {
+  width: 48px;
+
+  height: 48px;
+
+  min-width: 48px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background: var(--primary-soft);
+
+  border:
+    1px solid var(--primary-border);
+
+  color: var(--primary);
+}
+
+.service-status {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 6px 10px;
+
+  border-radius: 20px;
+
+  background: var(--success-bg);
+
+  color: var(--success-text);
+
+  font-size: 9px;
+
+  font-weight: 800;
+}
+
+/* =========================================================
+   SERVICE CONTENT
+========================================================= */
+
+.service-content {
+  flex: 1;
+}
+
+.service-content h2 {
+  margin: 0 0 8px;
+
+  color: var(--text-main);
+
+  font-size: 18px;
+
+  font-weight: 800;
+
+  line-height: 1.3;
+}
+
+.service-content p {
+  min-height: 55px;
+
+  margin: 0;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+
+  line-height: 1.65;
+}
+
+/* =========================================================
+   DETAILS
+========================================================= */
+
+.service-details {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 15px;
+
+  margin: 19px 0;
+
+  padding: 14px 0;
+
+  border-top:
+    1px solid var(--border-light);
+
+  border-bottom:
+    1px solid var(--border-light);
+}
+
+.service-detail-item {
+  min-width: 0;
+}
+
+.service-details span {
+  display: flex;
+
+  align-items: center;
+
+  gap: 4px;
+
+  margin-bottom: 5px;
+
+  color: var(--text-light);
+
+  font-size: 9px;
+
+  font-weight: 600;
+}
+
+.service-details strong {
+  color: var(--text-main);
+
+  font-size: 14px;
+
+  font-weight: 800;
+}
+
+/* PRICE */
+
+.service-detail-item:first-child strong {
+  color: var(--primary);
+}
+
+/* =========================================================
+   BOOK NOW
+========================================================= */
+
+.book-now-btn {
+  width: 100%;
+
+  min-height: 42px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background: var(--primary);
+
+  color: #ffffff;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 15px rgba(47, 128, 237, 0.14);
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.book-now-btn:hover {
+  background: var(--primary-dark);
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 9px 20px rgba(47, 128, 237, 0.21);
+}
+
+.book-arrow {
+  transition:
+    transform 0.2s ease;
+}
+
+.book-now-btn:hover .book-arrow {
+  transform: translateX(4px);
+}
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.services-loading {
+  min-height: 70vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  color: var(--text-muted);
+
+  font-size: 12px;
+}
+
+.loading-spinner-icon {
+  color: var(--primary);
+
+  animation:
+    servicesSpin 0.8s linear infinite;
+}
+
+@keyframes servicesSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.services-empty {
+  min-height: 360px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+}
+
+.empty-service-icon {
+  width: 62px;
+
+  height: 62px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-bottom: 14px;
+
+  border-radius: 14px;
+
+  background: var(--primary-soft);
+
+  border:
+    1px solid var(--primary-border);
+
+  color: var(--primary);
+}
+
+.services-empty h2 {
+  margin: 0 0 7px;
+
+  color: var(--text-main);
+
+  font-size: 18px;
+
+  font-weight: 800;
+}
+
+.services-empty p {
+  margin: 0;
+
+  color: var(--text-light);
+
+  font-size: 11px;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1050px) {
+  .services-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+  .services-page {
+    padding: 25px 18px 35px;
+  }
+
+  .services-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 18px;
+  }
+
+  .services-header h1 {
+    font-size: 27px;
+  }
+
+  .services-header p {
+    font-size: 12px;
+  }
+
+  .back-dashboard-btn {
+    width: 100%;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+
+    gap: 14px;
+  }
+
+  .service-card {
+    min-height: 310px;
+
+    padding: 19px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+  .services-page {
+    padding: 19px 13px 30px;
+  }
+
+  .services-header h1 {
+    font-size: 24px;
+  }
+
+  .service-card {
+    border-radius: 13px;
+
+    padding: 17px;
+  }
+
+  .service-details {
+    gap: 10px;
+  }
+}

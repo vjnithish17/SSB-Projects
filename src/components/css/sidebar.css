@@ -1,0 +1,558 @@
+/* =========================================================
+   SMART SERVICE BOOKING
+   LIGHT PROFESSIONAL SIDEBAR
+   SCREENSHOT-INSPIRED BLUE / WHITE THEME
+========================================================= */
+
+:root {
+  --primary: #2f80ed;
+  --primary-dark: #2563eb;
+
+  --primary-soft: #eaf3ff;
+  --primary-soft-hover: #e3efff;
+  --primary-border: #cfe2ff;
+
+  --text-main: #172033;
+  --text-dark: #334155;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+
+  --surface: #ffffff;
+  --page-bg: #f4f8fc;
+
+  --border: #e4eaf1;
+  --border-light: #edf1f5;
+
+  --accent-purple: #7c5cff;
+  --accent-pink: #ec5edb;
+}
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.app-sidebar {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 250px;
+  height: 100vh;
+
+  box-sizing: border-box;
+
+  padding: 18px 12px;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #ffffff;
+
+  color: var(--text-muted);
+
+  border-right: 1px solid var(--border);
+
+  box-shadow:
+    4px 0 18px rgba(15, 23, 42, 0.035);
+
+  z-index: 1000;
+
+  transition:
+    width 0.25s ease,
+    padding 0.25s ease;
+}
+
+/* =========================================================
+   SUBTLE TOP ACCENT
+========================================================= */
+
+.app-sidebar::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 3px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--primary),
+      var(--accent-purple),
+      var(--accent-pink)
+    );
+}
+
+/* =========================================================
+   COLLAPSED
+========================================================= */
+
+.app-sidebar.collapsed {
+  width: 76px;
+
+  padding: 18px 9px;
+}
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.sidebar-brand {
+  min-height: 50px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  padding: 5px 8px;
+
+  margin-top: 2px;
+}
+
+.app-sidebar.collapsed .sidebar-brand {
+  justify-content: center;
+
+  padding: 5px 0;
+}
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.sidebar-logo {
+  width: 42px;
+  height: 42px;
+
+  min-width: 42px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      #5b8ff9
+    );
+
+  color: #ffffff;
+
+  box-shadow:
+    0 7px 17px rgba(47, 128, 237, 0.18);
+}
+
+/* =========================================================
+   BRAND TEXT
+========================================================= */
+
+.sidebar-brand-text {
+  display: flex;
+
+  flex-direction: column;
+
+  line-height: 1.1;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+}
+
+.sidebar-brand-text strong {
+  color: var(--text-main);
+
+  font-size: 15px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.2px;
+}
+
+.sidebar-brand-text span {
+  margin-top: 4px;
+
+  color: var(--text-light);
+
+  font-size: 9px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.2px;
+}
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.sidebar-divider {
+  height: 1px;
+
+  margin: 17px 2px;
+
+  background: var(--border-light);
+}
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.sidebar-navigation {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.sidebar-link {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 44px;
+
+  padding: 0 13px;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  border-radius: 9px;
+
+  color: #6b778a;
+
+  text-decoration: none;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.sidebar-link:hover {
+  background: #f3f8ff;
+
+  color: var(--primary);
+
+  transform: translateX(1px);
+}
+
+/* =========================================================
+   ACTIVE
+========================================================= */
+
+.sidebar-link.active {
+  background: var(--primary-soft);
+
+  color: var(--primary);
+
+  box-shadow:
+    inset 3px 0 0 var(--primary);
+}
+
+.sidebar-link.active:hover {
+  background: var(--primary-soft-hover);
+
+  color: var(--primary-dark);
+}
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.sidebar-icon {
+  width: 17px;
+  height: 17px;
+
+  min-width: 17px;
+
+  flex-shrink: 0;
+
+  color: currentColor;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.sidebar-link:hover .sidebar-icon {
+  transform: translateX(1px);
+}
+
+/* =========================================================
+   COLLAPSED NAV
+========================================================= */
+
+.app-sidebar.collapsed .sidebar-link {
+  justify-content: center;
+
+  padding: 0;
+}
+
+.app-sidebar.collapsed .sidebar-link.active {
+  box-shadow: none;
+}
+
+/* =========================================================
+   NAV TEXT
+========================================================= */
+
+.sidebar-link span {
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+/* =========================================================
+   BOTTOM AREA
+========================================================= */
+
+.sidebar-bottom {
+  margin-top: auto;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 9px;
+
+  padding-top: 15px;
+}
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+.sidebar-logout {
+  width: 100%;
+
+  min-height: 43px;
+
+  padding: 0 13px;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background: transparent;
+
+  color: #6b778a;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.sidebar-logout:hover {
+  background: #fef2f2;
+
+  color: #dc2626;
+}
+
+.app-sidebar.collapsed .sidebar-logout {
+  justify-content: center;
+
+  padding: 0;
+}
+
+/* =========================================================
+   TOGGLE BUTTON
+========================================================= */
+
+.sidebar-menu-btn {
+  width: 100%;
+
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border: 1px solid var(--border);
+
+  border-radius: 9px;
+
+  background: #f8fafc;
+
+  color: #718096;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.sidebar-menu-btn:hover {
+  background: var(--primary-soft);
+
+  border-color: var(--primary-border);
+
+  color: var(--primary);
+
+  transform: translateY(-1px);
+}
+
+.app-sidebar.collapsed .sidebar-menu-btn {
+  background: #f7faff;
+}
+
+/* =========================================================
+   ACTIVE ICON
+========================================================= */
+
+.sidebar-link.active .sidebar-icon {
+  color: var(--primary);
+}
+
+/* =========================================================
+   OPTIONAL SECTION LABEL
+========================================================= */
+
+.sidebar-section-label {
+  padding: 10px 13px 5px;
+
+  color: #a2adba;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.1px;
+
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   TOOLTIP-LIKE COLLAPSED STATE
+========================================================= */
+
+.app-sidebar.collapsed
+.sidebar-brand-text,
+.app-sidebar.collapsed
+.sidebar-link span,
+.app-sidebar.collapsed
+.sidebar-logout span {
+  display: none;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+  .app-sidebar {
+    width: 76px;
+
+    padding: 18px 9px;
+  }
+
+  .app-sidebar:not(.collapsed) {
+    width: 225px;
+  }
+
+  .app-sidebar .sidebar-brand-text {
+    display: none;
+  }
+
+  .app-sidebar:not(.collapsed)
+  .sidebar-brand-text {
+    display: flex;
+  }
+
+  .app-sidebar.collapsed
+  .sidebar-link span,
+  .app-sidebar.collapsed
+  .sidebar-logout span {
+    display: none;
+  }
+
+  .app-sidebar:not(.collapsed)
+  .sidebar-link span,
+  .app-sidebar:not(.collapsed)
+  .sidebar-logout span {
+    display: inline;
+  }
+
+  .app-sidebar:not(.collapsed)
+  .sidebar-link {
+    padding: 0 13px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 450px) {
+  .app-sidebar {
+    width: 68px;
+
+    padding: 16px 8px;
+  }
+
+  .app-sidebar:not(.collapsed) {
+    width: 210px;
+  }
+
+  .sidebar-logo {
+    width: 40px;
+    height: 40px;
+
+    min-width: 40px;
+  }
+
+  .sidebar-link {
+    min-height: 43px;
+
+    font-size: 11px;
+  }
+
+  .sidebar-menu-btn {
+    height: 40px;
+  }
+}

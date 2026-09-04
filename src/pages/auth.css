@@ -1,0 +1,848 @@
+/* =========================================================
+   SMART SERVICE BOOKING
+   AUTH PAGE
+   PREMIUM GLASSMORPHISM
+========================================================= */
+
+:root {
+  --primary: #2f80ed;
+  --primary-dark: #2563eb;
+
+  --primary-soft: #eaf3ff;
+  --primary-border: #cfe2ff;
+
+  --page-bg: #eef5fc;
+
+  --text-main: #172033;
+  --text-muted: #64748b;
+
+  --border: rgba(255, 255, 255, 0.7);
+  --border-light: rgba(226, 232, 240, 0.7);
+
+  --danger-bg: #fef2f2;
+  --danger-border: #fecaca;
+  --danger-text: #dc2626;
+}
+
+
+/* =========================================================
+   AUTH PAGE
+========================================================= */
+
+.auth-page {
+  min-height: 100vh;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 20px;
+
+  box-sizing: border-box;
+
+  position: relative;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 10% 15%,
+      rgba(47, 128, 237, 0.18),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 85%,
+      rgba(37, 99, 235, 0.14),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #f8fbff 0%,
+      #edf5fc 50%,
+      #f7fbff 100%
+    );
+}
+
+
+/* =========================================================
+   DECORATIVE LIGHT BLOBS
+========================================================= */
+
+.auth-page::before {
+  content: "";
+
+  position: absolute;
+
+  width: 320px;
+
+  height: 320px;
+
+  top: -140px;
+
+  left: -100px;
+
+  border-radius: 50%;
+
+  background: rgba(47, 128, 237, 0.10);
+
+  filter: blur(10px);
+
+  pointer-events: none;
+}
+
+.auth-page::after {
+  content: "";
+
+  position: absolute;
+
+  width: 300px;
+
+  height: 300px;
+
+  right: -100px;
+
+  bottom: -120px;
+
+  border-radius: 50%;
+
+  background: rgba(37, 99, 235, 0.10);
+
+  filter: blur(12px);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   MAIN GLASS CARD
+========================================================= */
+
+.auth-wrapper {
+  position: relative;
+
+  width: 100%;
+
+  max-width: 1000px;
+
+  height: 600px;
+
+  overflow: hidden;
+
+  background:
+    rgba(255, 255, 255, 0.62);
+
+  border-radius: 28px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.85);
+
+  box-shadow:
+    0 30px 80px rgba(15, 23, 42, 0.14),
+    0 8px 25px rgba(47, 128, 237, 0.06);
+
+  backdrop-filter: blur(22px);
+
+  -webkit-backdrop-filter: blur(22px);
+}
+
+
+/* =========================================================
+   FORMS
+========================================================= */
+
+.auth-form {
+  position: absolute;
+
+  top: 0;
+
+  width: 50%;
+
+  height: 100%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 50px;
+
+  box-sizing: border-box;
+
+  background:
+    rgba(255, 255, 255, 0.58);
+
+  backdrop-filter: blur(18px);
+
+  -webkit-backdrop-filter: blur(18px);
+
+  transition:
+    transform 0.8s
+    cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  z-index: 2;
+}
+
+.auth-form form {
+  width: 100%;
+
+  max-width: 350px;
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+.login-form {
+  left: 0;
+
+  transform: translateX(0);
+}
+
+
+/* =========================================================
+   REGISTER
+========================================================= */
+
+.register-form {
+  right: 0;
+
+  transform: translateX(100%);
+}
+
+
+/* =========================================================
+   REGISTER STATE
+========================================================= */
+
+.auth-page.show-register .login-form {
+  transform: translateX(-100%);
+}
+
+.auth-page.show-register .register-form {
+  transform: translateX(0);
+}
+
+
+/* =========================================================
+   FORM TITLE
+========================================================= */
+
+.auth-form h1 {
+  margin: 0 0 10px;
+
+  text-align: center;
+
+  color: var(--text-main);
+
+  font-size: 34px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.8px;
+}
+
+
+/* =========================================================
+   SUBTITLE
+========================================================= */
+
+.auth-subtitle {
+  margin: 0 0 30px;
+
+  text-align: center;
+
+  color: var(--text-muted);
+
+  font-size: 14px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.auth-input {
+  margin-bottom: 18px;
+}
+
+.auth-input input {
+  width: 100%;
+
+  height: 52px;
+
+  padding: 0 17px;
+
+  box-sizing: border-box;
+
+  border:
+    1px solid rgba(203, 213, 225, 0.75);
+
+  border-radius: 12px;
+
+  outline: none;
+
+  background:
+    rgba(248, 250, 252, 0.72);
+
+  color: var(--text-main);
+
+  font-size: 14px;
+
+  font-family: inherit;
+
+  backdrop-filter: blur(10px);
+
+  -webkit-backdrop-filter: blur(10px);
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.auth-input input::placeholder {
+  color: #94a3b8;
+}
+
+.auth-input input:hover {
+  border-color:
+    rgba(47, 128, 237, 0.35);
+
+  background:
+    rgba(255, 255, 255, 0.85);
+}
+
+.auth-input input:focus {
+  background:
+    rgba(255, 255, 255, 0.95);
+
+  border-color:
+    rgba(47, 128, 237, 0.65);
+
+  box-shadow:
+    0 0 0 4px rgba(47, 128, 237, 0.09),
+    0 8px 20px rgba(47, 128, 237, 0.06);
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   MAIN BUTTON
+========================================================= */
+
+.auth-btn {
+  width: 100%;
+
+  height: 52px;
+
+  margin-top: 8px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #3185f5 0%,
+      #2563eb 100%
+    );
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 10px 25px rgba(47, 128, 237, 0.22);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.auth-btn:hover {
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb 0%,
+      #1d4ed8 100%
+    );
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 14px 30px rgba(47, 128, 237, 0.28);
+}
+
+.auth-btn:active {
+  transform: translateY(0);
+}
+
+.auth-btn:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+
+  transform: none;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   GLASS OVERLAY
+========================================================= */
+
+.auth-overlay {
+  position: absolute;
+
+  top: 0;
+
+  right: 0;
+
+  width: 50%;
+
+  height: 100%;
+
+  overflow: hidden;
+
+  z-index: 10;
+
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(47, 128, 237, 0.96) 0%,
+      rgba(37, 99, 235, 0.94) 100%
+    );
+
+  box-shadow:
+    -15px 0 40px rgba(47, 128, 237, 0.12);
+
+  backdrop-filter: blur(18px);
+
+  -webkit-backdrop-filter: blur(18px);
+
+  transition:
+    transform 0.8s
+    cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+
+/* =========================================================
+   OVERLAY LIGHT EFFECT
+========================================================= */
+
+.auth-overlay::before {
+  content: "";
+
+  position: absolute;
+
+  width: 280px;
+
+  height: 280px;
+
+  top: -120px;
+
+  right: -100px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.10);
+
+  filter: blur(5px);
+}
+
+.auth-overlay::after {
+  content: "";
+
+  position: absolute;
+
+  width: 220px;
+
+  height: 220px;
+
+  bottom: -100px;
+
+  left: -80px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  filter: blur(8px);
+}
+
+
+/* =========================================================
+   MOVE OVERLAY LEFT
+========================================================= */
+
+.auth-page.show-register .auth-overlay {
+  transform: translateX(-100%);
+}
+
+
+/* =========================================================
+   OVERLAY PANEL
+========================================================= */
+
+.overlay-panel {
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 50px;
+
+  box-sizing: border-box;
+
+  text-align: center;
+
+  color: #ffffff;
+
+  transition:
+    transform 0.8s
+    cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+
+/* =========================================================
+   LOGIN PANEL
+========================================================= */
+
+.overlay-left {
+  transform: translateX(-100%);
+}
+
+
+/* =========================================================
+   REGISTER PANEL
+========================================================= */
+
+.overlay-right {
+  transform: translateX(0);
+}
+
+
+/* =========================================================
+   REGISTER STATE
+========================================================= */
+
+.auth-page.show-register .overlay-left {
+  transform: translateX(0);
+}
+
+.auth-page.show-register .overlay-right {
+  transform: translateX(100%);
+}
+
+
+/* =========================================================
+   OVERLAY TITLE
+========================================================= */
+
+.overlay-panel h1 {
+  margin: 0 0 18px;
+
+  color: #ffffff;
+
+  font-size: 36px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.8px;
+
+  text-shadow:
+    0 4px 15px rgba(15, 23, 42, 0.12);
+}
+
+.overlay-panel p {
+  max-width: 290px;
+
+  margin: 0 0 30px;
+
+  color:
+    rgba(255, 255, 255, 0.88);
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   GHOST BUTTON
+========================================================= */
+
+.ghost-btn {
+  min-width: 130px;
+
+  height: 46px;
+
+  padding: 0 25px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.9);
+
+  border-radius: 25px;
+
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  color: #ffffff;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  backdrop-filter: blur(8px);
+
+  -webkit-backdrop-filter: blur(8px);
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.ghost-btn:hover {
+  background:
+    rgba(255, 255, 255, 0.96);
+
+  color: var(--primary);
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 25px rgba(15, 23, 42, 0.14);
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.auth-error {
+  padding: 10px 12px;
+
+  margin-bottom: 15px;
+
+  border-radius: 10px;
+
+  background:
+    rgba(254, 242, 242, 0.9);
+
+  border:
+    1px solid rgba(254, 202, 202, 0.9);
+
+  color: var(--danger-text);
+
+  text-align: center;
+
+  font-size: 12px;
+
+  line-height: 1.4;
+
+  backdrop-filter: blur(8px);
+
+  -webkit-backdrop-filter: blur(8px);
+}
+
+
+/* =========================================================
+   MOBILE SWITCH
+========================================================= */
+
+.mobile-auth-switch {
+  display: none;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .auth-page {
+    padding: 15px;
+  }
+
+  .auth-wrapper {
+    width: 100%;
+
+    max-width: 450px;
+
+    height: 650px;
+
+    border-radius: 22px;
+  }
+
+  .auth-form {
+    width: 100%;
+
+    padding: 35px 25px;
+
+    flex-direction: column;
+
+    border-radius: 22px;
+
+    background:
+      rgba(255, 255, 255, 0.72);
+  }
+
+  .auth-form form {
+    max-width: 350px;
+  }
+
+
+  /* LOGIN */
+
+  .login-form {
+    transform: translateX(0);
+  }
+
+
+  /* REGISTER */
+
+  .register-form {
+    right: auto;
+
+    left: 0;
+
+    transform: translateX(100%);
+  }
+
+
+  /* REGISTER MODE */
+
+  .auth-page.show-register .login-form {
+    transform: translateX(-100%);
+  }
+
+  .auth-page.show-register .register-form {
+    transform: translateX(0);
+  }
+
+
+  /* HIDE OVERLAY */
+
+  .auth-overlay {
+    display: none;
+  }
+
+
+  /* MOBILE SWITCH */
+
+  .mobile-auth-switch {
+    display: block;
+
+    margin: 18px 0 0;
+
+    text-align: center;
+
+    color: var(--text-muted);
+
+    font-size: 14px;
+  }
+
+  .mobile-auth-switch button {
+    margin-left: 5px;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--primary);
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+  }
+
+  .mobile-auth-switch button:hover {
+    text-decoration: underline;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+
+  .auth-page {
+    padding: 10px;
+  }
+
+  .auth-wrapper {
+    height: 640px;
+
+    border-radius: 20px;
+  }
+
+  .auth-form {
+    padding:
+      30px 20px;
+  }
+
+  .auth-form h1 {
+    font-size: 29px;
+  }
+
+  .auth-subtitle {
+    font-size: 13px;
+
+    margin-bottom: 24px;
+  }
+
+  .auth-input input {
+    height: 49px;
+
+    font-size: 13px;
+  }
+
+  .auth-btn {
+    height: 49px;
+
+    font-size: 13px;
+  }
+}

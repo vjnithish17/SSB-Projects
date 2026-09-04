@@ -1,0 +1,1285 @@
+/* =========================================================
+   SMART SERVICE BOOKING
+   TECHNICIAN DASHBOARD
+   LIGHT BLUE / WHITE PROFESSIONAL THEME
+========================================================= */
+
+:root {
+  --primary: #2f80ed;
+  --primary-dark: #2563eb;
+
+  --primary-soft: #eaf3ff;
+  --primary-soft-hover: #e3efff;
+  --primary-border: #cfe2ff;
+
+  --page-bg: #f4f8fc;
+  --card-bg: #ffffff;
+
+  --text-main: #172033;
+  --text-dark: #334155;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+
+  --border: #e2e8f0;
+  --border-light: #edf1f5;
+
+  /* SUCCESS */
+  --success-bg: #f0fdf4;
+  --success-border: #bbf7d0;
+  --success-text: #15803d;
+
+  /* WARNING */
+  --warning-bg: #fff7ed;
+  --warning-border: #fed7aa;
+  --warning-text: #c2410c;
+
+  /* DANGER */
+  --danger-bg: #fef2f2;
+  --danger-border: #fecaca;
+  --danger-text: #dc2626;
+}
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.technician-dashboard {
+  width: 100%;
+
+  min-height: calc(100vh - 72px);
+
+  box-sizing: border-box;
+
+  padding: 34px 40px 45px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f7faff 0%,
+      #f3f7fc 100%
+    );
+
+  color: var(--text-main);
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.technician-header {
+  max-width: 1500px;
+
+  margin: 0 auto 28px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 25px;
+}
+
+.technician-label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: var(--primary);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.6px;
+}
+
+.technician-header h1 {
+  margin: 0;
+
+  color: var(--text-main);
+
+  font-size: 32px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.6px;
+}
+
+.technician-header p {
+  margin: 8px 0 0;
+
+  color: var(--text-muted);
+
+  font-size: 13px;
+
+  line-height: 1.5;
+}
+
+/* =========================================================
+   REFRESH
+========================================================= */
+
+.refresh-btn {
+  min-height: 40px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  padding: 0 15px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.refresh-btn:hover:not(:disabled) {
+  border-color: var(--primary-border);
+
+  background: var(--primary-soft);
+
+  color: var(--primary);
+
+  transform: translateY(-1px);
+}
+
+.refresh-btn:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.technician-error {
+  max-width: 1500px;
+
+  margin: 0 auto 20px;
+
+  padding: 13px 16px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  border:
+    1px solid var(--danger-border);
+
+  border-radius: 10px;
+
+  background: var(--danger-bg);
+
+  color: var(--danger-text);
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.technician-stats {
+  max-width: 1500px;
+
+  margin: 0 auto 24px;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 15px;
+}
+
+.technician-stat-card {
+  position: relative;
+
+  overflow: hidden;
+
+  min-height: 125px;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 20px;
+
+  background: #ffffff;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 7px 24px rgba(15, 23, 42, 0.04);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* BLUE ACCENT */
+
+.technician-stat-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  right: 0;
+
+  height: 3px;
+
+  background: var(--primary);
+}
+
+.technician-stat-card:hover {
+  transform: translateY(-3px);
+
+  border-color: var(--primary-border);
+
+  box-shadow:
+    0 13px 30px rgba(47, 128, 237, 0.08);
+}
+
+/* =========================================================
+   STAT ICON
+========================================================= */
+
+.stat-icon {
+  width: 48px;
+
+  height: 48px;
+
+  min-width: 48px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: var(--primary-soft);
+
+  color: var(--primary);
+
+  border:
+    1px solid var(--primary-border);
+}
+
+.technician-stat-card span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+
+  font-weight: 600;
+}
+
+.technician-stat-card h2 {
+  margin: 0;
+
+  color: var(--text-main);
+
+  font-size: 25px;
+
+  font-weight: 800;
+}
+
+/* =========================================================
+   BOOKINGS SECTION
+========================================================= */
+
+.technician-bookings-section {
+  max-width: 1500px;
+
+  margin: 0 auto;
+
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 15px;
+
+  box-shadow:
+    0 7px 24px rgba(15, 23, 42, 0.04);
+}
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.section-header {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 21px 24px;
+
+  border-bottom:
+    1px solid var(--border-light);
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff,
+      #fbfdff
+    );
+}
+
+.section-header > div span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: var(--primary);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.4px;
+}
+
+.section-header h2 {
+  margin: 0;
+
+  color: var(--text-main);
+
+  font-size: 19px;
+
+  font-weight: 800;
+}
+
+.section-header p {
+  margin: 5px 0 0;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+}
+
+.booking-count {
+  padding: 7px 11px;
+
+  border-radius: 20px;
+
+  background: var(--primary-soft);
+
+  color: var(--primary);
+
+  border:
+    1px solid var(--primary-border);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   BOOKING LIST
+========================================================= */
+
+.technician-booking-list {
+  padding: 16px 20px 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+/* =========================================================
+   BOOKING CARD
+========================================================= */
+
+.technician-booking-card {
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 18px;
+
+  border:
+    1px solid var(--border-light);
+
+  border-radius: 12px;
+
+  background: #fafbfc;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* BLUE TOP LINE */
+
+.technician-booking-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  right: 0;
+
+  height: 2px;
+
+  background: var(--primary);
+}
+
+.technician-booking-card:hover {
+  background: #ffffff;
+
+  border-color: var(--primary-border);
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 23px rgba(15, 23, 42, 0.06);
+}
+
+/* =========================================================
+   BOOKING TOP
+========================================================= */
+
+.booking-top {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding-bottom: 15px;
+
+  border-bottom:
+    1px solid var(--border-light);
+}
+
+.technician-booking-main {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  min-width: 0;
+}
+
+.service-icon {
+  width: 45px;
+
+  height: 45px;
+
+  min-width: 45px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background: var(--primary-soft);
+
+  border:
+    1px solid var(--primary-border);
+
+  color: var(--primary);
+}
+
+.service-label {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: var(--primary);
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.2px;
+}
+
+.technician-booking-main h3 {
+  margin: 0;
+
+  color: var(--text-main);
+
+  font-size: 14px;
+
+  font-weight: 800;
+}
+
+.service-category {
+  margin: 4px 0 0;
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+}
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.technician-status {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 7px 11px;
+
+  border-radius: 20px;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+/* Assigned - Blue */
+
+.technician-status.technician-assigned {
+  background: var(--primary-soft);
+
+  color: var(--primary);
+
+  border:
+    1px solid var(--primary-border);
+}
+
+/* Accepted - Green */
+
+.technician-status.accepted {
+  background: var(--success-bg);
+
+  color: var(--success-text);
+
+  border:
+    1px solid var(--success-border);
+}
+
+/* In Progress - Orange */
+
+.technician-status.in-progress {
+  background: var(--warning-bg);
+
+  color: var(--warning-text);
+
+  border:
+    1px solid var(--warning-border);
+}
+
+/* Completed / Paid - Green */
+
+.technician-status.completed,
+.technician-status.paid {
+  background: var(--success-bg);
+
+  color: var(--success-text);
+
+  border:
+    1px solid var(--success-border);
+}
+
+/* Cancelled - Red */
+
+.technician-status.cancelled {
+  background: var(--danger-bg);
+
+  color: var(--danger-text);
+
+  border:
+    1px solid var(--danger-border);
+}
+
+/* =========================================================
+   BOOKING DETAILS
+========================================================= */
+
+.booking-details-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 15px;
+
+  padding: 17px 0;
+}
+
+.booking-detail {
+  min-width: 0;
+}
+
+.booking-detail > span {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: var(--text-light);
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.7px;
+}
+
+.detail-value {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  color: var(--text-dark);
+
+  font-size: 10px;
+
+  line-height: 1.5;
+
+  word-break: break-word;
+}
+
+.detail-value svg {
+  flex-shrink: 0;
+
+  color: var(--primary);
+}
+
+.booking-detail small {
+  display: block;
+
+  margin-top: 4px;
+
+  color: var(--text-muted);
+
+  font-size: 9px;
+
+  word-break: break-word;
+}
+
+.booking-price {
+  display: flex;
+
+  align-items: center;
+
+  gap: 3px;
+
+  color: var(--primary) !important;
+
+  font-size: 15px !important;
+
+  font-weight: 800;
+}
+
+/* =========================================================
+   NOTES
+========================================================= */
+
+.technician-notes {
+  margin-bottom: 15px;
+
+  padding: 11px 13px;
+
+  border:
+    1px solid var(--primary-border);
+
+  border-radius: 9px;
+
+  background: #f8fbff;
+}
+
+.technician-notes span {
+  color: var(--primary);
+
+  font-size: 10px;
+
+  font-weight: 800;
+}
+
+.technician-notes p {
+  margin: 5px 0 0;
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+
+  line-height: 1.5;
+}
+
+/* =========================================================
+   BOOKING ACTIONS
+========================================================= */
+
+.booking-actions {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 9px;
+
+  padding-top: 14px;
+
+  border-top:
+    1px solid var(--border-light);
+}
+
+.response-area,
+.service-action-area {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  flex-wrap: wrap;
+}
+
+/* =========================================================
+   ACCEPT
+========================================================= */
+
+.accept-btn {
+  min-height: 35px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 6px;
+
+  padding: 0 13px;
+
+  border: 1px solid var(--success-border);
+
+  border-radius: 8px;
+
+  background: var(--success-bg);
+
+  color: var(--success-text);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.accept-btn:hover:not(:disabled) {
+  background: #e8f9ee;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 7px 16px rgba(21, 128, 61, 0.10);
+}
+
+/* =========================================================
+   REJECT
+========================================================= */
+
+.reject-btn {
+  min-height: 35px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 6px;
+
+  padding: 0 13px;
+
+  border:
+    1px solid var(--danger-border);
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: var(--danger-text);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.reject-btn:hover:not(:disabled) {
+  background: var(--danger-bg);
+
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   DISABLED
+========================================================= */
+
+.accept-btn:disabled,
+.reject-btn:disabled,
+.start-service-btn:disabled,
+.complete-service-btn:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+/* =========================================================
+   ACCEPTED / PROGRESS / COMPLETED
+========================================================= */
+
+.accepted-text,
+.progress-text,
+.completed-text {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 8px 11px;
+
+  border-radius: 8px;
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+.accepted-text {
+  background: var(--success-bg);
+
+  color: var(--success-text);
+}
+
+.progress-text {
+  background: var(--warning-bg);
+
+  color: var(--warning-text);
+}
+
+.completed-text {
+  background: var(--success-bg);
+
+  color: var(--success-text);
+}
+
+/* =========================================================
+   START SERVICE
+========================================================= */
+
+.start-service-btn,
+.complete-service-btn {
+  min-height: 35px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 6px;
+
+  padding: 0 13px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  color: #ffffff;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Start = Blue */
+
+.start-service-btn {
+  background: var(--primary);
+
+  box-shadow:
+    0 6px 15px rgba(47, 128, 237, 0.16);
+}
+
+.start-service-btn:hover:not(:disabled) {
+  background: var(--primary-dark);
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 8px 18px rgba(47, 128, 237, 0.23);
+}
+
+/* Complete = Green */
+
+.complete-service-btn {
+  background: var(--success-text);
+
+  box-shadow:
+    0 6px 15px rgba(21, 128, 61, 0.16);
+}
+
+.complete-service-btn:hover:not(:disabled) {
+  background: #166534;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 8px 18px rgba(21, 128, 61, 0.22);
+}
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.technician-loading {
+  min-height: 230px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+}
+
+.dashboard-loading-icon {
+  color: var(--primary);
+
+  animation:
+    technicianSpin 0.8s linear infinite;
+}
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.technician-empty {
+  min-height: 270px;
+
+  padding: 50px 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+}
+
+.empty-icon {
+  width: 60px;
+
+  height: 60px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-bottom: 13px;
+
+  border-radius: 14px;
+
+  background: var(--primary-soft);
+
+  border:
+    1px solid var(--primary-border);
+
+  color: var(--primary);
+}
+
+.technician-empty h3 {
+  margin: 0 0 7px;
+
+  color: var(--text-main);
+
+  font-size: 17px;
+
+  font-weight: 800;
+}
+
+.technician-empty p {
+  margin: 0;
+
+  color: var(--text-light);
+
+  font-size: 11px;
+}
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+.refresh-spin,
+.action-spin {
+  animation:
+    technicianSpin 0.8s linear infinite;
+}
+
+@keyframes technicianSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+  .technician-stats {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .booking-details-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+  .technician-dashboard {
+    padding: 28px 25px 40px;
+  }
+
+  .technician-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .refresh-btn {
+    width: 100%;
+  }
+
+  .booking-top {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .booking-actions {
+    align-items: flex-start;
+
+    justify-content: flex-start;
+
+    flex-direction: column;
+  }
+
+  .response-area,
+  .service-action-area {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .technician-dashboard {
+    padding: 22px 17px 35px;
+  }
+
+  .technician-header h1 {
+    font-size: 27px;
+  }
+
+  .technician-header p {
+    font-size: 12px;
+  }
+
+  .technician-stats {
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+  }
+
+  .technician-stat-card {
+    min-height: 100px;
+
+    padding: 17px;
+  }
+
+  .technician-bookings-section {
+    border-radius: 13px;
+  }
+
+  .section-header {
+    align-items: flex-start;
+
+    padding: 18px;
+
+    flex-direction: column;
+  }
+
+  .technician-booking-list {
+    padding: 12px;
+  }
+
+  .technician-booking-card {
+    padding: 15px;
+  }
+
+  .booking-details-grid {
+    grid-template-columns: 1fr;
+
+    gap: 13px;
+  }
+
+  .response-area,
+  .service-action-area {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .accept-btn,
+  .reject-btn,
+  .start-service-btn,
+  .complete-service-btn {
+    width: 100%;
+  }
+
+  .accepted-text,
+  .progress-text,
+  .completed-text {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    justify-content: center;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+  .technician-dashboard {
+    padding: 18px 12px 30px;
+  }
+
+  .technician-header h1 {
+    font-size: 24px;
+  }
+
+  .technician-stat-card {
+    padding: 15px;
+  }
+
+  .technician-booking-card {
+    padding: 13px;
+  }
+}
