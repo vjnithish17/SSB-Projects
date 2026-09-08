@@ -1,35 +1,41 @@
 /* =========================================================
    SMART SERVICE BOOKING
    CUSTOMER SERVICES
-   LIGHT BLUE / WHITE PROFESSIONAL THEME
+   LIGHT ORANGE / WHITE PROFESSIONAL THEME
 ========================================================= */
 
 :root {
-  --primary: #2f80ed;
-  --primary-dark: #2563eb;
+  /* ================= PRIMARY ORANGE ================= */
+  --primary: #ff6411;
+  --primary-dark: #e95408;
+  --primary-light: #ff7a32;
+  --primary-soft: #fff1ea;
+  --primary-soft-hover: #ffe8dc;
+  --primary-border: #ffd4c1;
 
-  --primary-soft: #eaf3ff;
-  --primary-soft-hover: #e3efff;
-  --primary-border: #cfe2ff;
-
-  --page-bg: #f4f8fc;
+  /* ================= PAGE ================= */
+  --page-bg: #fffaf7;
   --card-bg: #ffffff;
 
-  --text-main: #172033;
-  --text-dark: #334155;
-  --text-muted: #64748b;
-  --text-light: #94a3b8;
+  /* ================= TEXT ================= */
+  --text-main: #7a3b18;
+  --text-dark: #9a4818;
+  --text-muted: #a66a48;
+  --text-light: #c49a82;
 
-  --border: #e2e8f0;
-  --border-light: #edf1f5;
+  /* ================= BORDER ================= */
+  --border: #f0ddd2;
+  --border-light: #f7ebe5;
 
-  --success-bg: #f0fdf4;
-  --success-border: #bbf7d0;
-  --success-text: #15803d;
+  /* ================= SUCCESS ================= */
+  --success-bg: #edf8ea;
+  --success-border: #cce6c5;
+  --success-text: #5d9b52;
 
-  --danger-bg: #fef2f2;
-  --danger-border: #fecaca;
-  --danger-text: #dc2626;
+  /* ================= DANGER ================= */
+  --danger-bg: #fff0f0;
+  --danger-border: #f5caca;
+  --danger-text: #d94d4d;
 }
 
 /* =========================================================
@@ -38,19 +44,17 @@
 
 .services-page {
   width: 100%;
-
   min-height: calc(100vh - 72px);
 
   box-sizing: border-box;
 
   padding: 34px 40px 45px;
 
-  background:
-    linear-gradient(
-      180deg,
-      #f7faff 0%,
-      #f3f7fc 100%
-    );
+  background: linear-gradient(
+    180deg,
+    #fffdfb 0%,
+    #fff8f4 100%
+  );
 
   color: var(--text-main);
 }
@@ -65,9 +69,7 @@
   margin: 0 auto 30px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 
   gap: 25px;
@@ -85,7 +87,6 @@
   color: var(--primary);
 
   font-size: 10px;
-
   font-weight: 800;
 
   letter-spacing: 1.6px;
@@ -97,7 +98,6 @@
   color: var(--text-main);
 
   font-size: 32px;
-
   font-weight: 800;
 
   letter-spacing: -0.6px;
@@ -123,9 +123,7 @@
   min-height: 40px;
 
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
 
   gap: 7px;
@@ -136,12 +134,11 @@
 
   border-radius: 9px;
 
-  background: #ffffff;
+  background: var(--card-bg);
 
   color: var(--text-muted);
 
   font-size: 11px;
-
   font-weight: 700;
 
   cursor: pointer;
@@ -150,7 +147,8 @@
     background 0.2s ease,
     border-color 0.2s ease,
     color 0.2s ease,
-    transform 0.2s ease;
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .back-dashboard-btn:hover {
@@ -161,6 +159,9 @@
   color: var(--primary);
 
   transform: translateY(-1px);
+
+  box-shadow:
+    0 5px 13px rgba(255, 100, 17, 0.06);
 }
 
 /* =========================================================
@@ -175,24 +176,20 @@
   padding: 13px 16px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   gap: 8px;
 
-  border:
-    1px solid var(--danger-border);
+  border: 1px solid var(--danger-border);
 
   border-radius: 10px;
 
   background: var(--danger-bg);
 
-  color: #dc2626;
+  color: var(--danger-text);
 
   font-size: 11px;
-
   font-weight: 700;
 }
 
@@ -227,20 +224,18 @@
   box-sizing: border-box;
 
   display: flex;
-
   flex-direction: column;
 
   padding: 21px;
 
   background: var(--card-bg);
 
-  border:
-    1px solid var(--border);
+  border: 1px solid var(--border);
 
   border-radius: 15px;
 
   box-shadow:
-    0 7px 24px rgba(15, 23, 42, 0.04);
+    0 7px 24px rgba(122, 59, 24, 0.04);
 
   transition:
     transform 0.25s ease,
@@ -248,7 +243,9 @@
     border-color 0.25s ease;
 }
 
-/* TOP BLUE ACCENT */
+/* =========================================================
+   TOP ORANGE ACCENT
+========================================================= */
 
 .service-card::before {
   content: "";
@@ -256,9 +253,7 @@
   position: absolute;
 
   top: 0;
-
   left: 0;
-
   right: 0;
 
   height: 3px;
@@ -272,7 +267,7 @@
   border-color: var(--primary-border);
 
   box-shadow:
-    0 16px 35px rgba(47, 128, 237, 0.09);
+    0 16px 35px rgba(255, 100, 17, 0.09);
 }
 
 /* =========================================================
@@ -281,9 +276,7 @@
 
 .service-card-top {
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 
   gap: 15px;
@@ -291,32 +284,34 @@
   margin-bottom: 20px;
 }
 
+/* =========================================================
+   SERVICE ICON
+========================================================= */
+
 .service-icon {
   width: 48px;
-
   height: 48px;
-
   min-width: 48px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   border-radius: 11px;
 
   background: var(--primary-soft);
 
-  border:
-    1px solid var(--primary-border);
+  border: 1px solid var(--primary-border);
 
   color: var(--primary);
 }
 
+/* =========================================================
+   SERVICE STATUS
+========================================================= */
+
 .service-status {
   display: inline-flex;
-
   align-items: center;
 
   padding: 6px 10px;
@@ -327,8 +322,9 @@
 
   color: var(--success-text);
 
-  font-size: 9px;
+  border: 1px solid var(--success-border);
 
+  font-size: 9px;
   font-weight: 800;
 }
 
@@ -346,7 +342,6 @@
   color: var(--text-main);
 
   font-size: 18px;
-
   font-weight: 800;
 
   line-height: 1.3;
@@ -379,11 +374,9 @@
 
   padding: 14px 0;
 
-  border-top:
-    1px solid var(--border-light);
+  border-top: 1px solid var(--border-light);
 
-  border-bottom:
-    1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
 }
 
 .service-detail-item {
@@ -392,7 +385,6 @@
 
 .service-details span {
   display: flex;
-
   align-items: center;
 
   gap: 4px;
@@ -402,7 +394,6 @@
   color: var(--text-light);
 
   font-size: 9px;
-
   font-weight: 600;
 }
 
@@ -410,11 +401,12 @@
   color: var(--text-main);
 
   font-size: 14px;
-
   font-weight: 800;
 }
 
-/* PRICE */
+/* =========================================================
+   PRICE
+========================================================= */
 
 .service-detail-item:first-child strong {
   color: var(--primary);
@@ -430,9 +422,7 @@
   min-height: 42px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   gap: 7px;
@@ -446,13 +436,12 @@
   color: #ffffff;
 
   font-size: 11px;
-
   font-weight: 700;
 
   cursor: pointer;
 
   box-shadow:
-    0 6px 15px rgba(47, 128, 237, 0.14);
+    0 6px 15px rgba(255, 100, 17, 0.14);
 
   transition:
     background 0.2s ease,
@@ -466,7 +455,7 @@
   transform: translateY(-2px);
 
   box-shadow:
-    0 9px 20px rgba(47, 128, 237, 0.21);
+    0 9px 20px rgba(255, 100, 17, 0.21);
 }
 
 .book-arrow {
@@ -486,11 +475,9 @@
   min-height: 70vh;
 
   display: flex;
-
   flex-direction: column;
 
   align-items: center;
-
   justify-content: center;
 
   gap: 12px;
@@ -521,11 +508,9 @@
   min-height: 360px;
 
   display: flex;
-
   flex-direction: column;
 
   align-items: center;
-
   justify-content: center;
 
   text-align: center;
@@ -533,13 +518,10 @@
 
 .empty-service-icon {
   width: 62px;
-
   height: 62px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   margin-bottom: 14px;
@@ -548,8 +530,7 @@
 
   background: var(--primary-soft);
 
-  border:
-    1px solid var(--primary-border);
+  border: 1px solid var(--primary-border);
 
   color: var(--primary);
 }
@@ -560,7 +541,6 @@
   color: var(--text-main);
 
   font-size: 18px;
-
   font-weight: 800;
 }
 

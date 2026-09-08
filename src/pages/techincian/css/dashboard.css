@@ -1,42 +1,46 @@
 /* =========================================================
    SMART SERVICE BOOKING
    TECHNICIAN DASHBOARD
-   LIGHT BLUE / WHITE PROFESSIONAL THEME
+   LIGHT ORANGE / WHITE PROFESSIONAL THEME
 ========================================================= */
 
 :root {
-  --primary: #2f80ed;
-  --primary-dark: #2563eb;
+  /* ================= PRIMARY ORANGE ================= */
+  --primary: #ff6411;
+  --primary-dark: #e95408;
+  --primary-light: #ff7a32;
+  --primary-soft: #fff1ea;
+  --primary-soft-hover: #ffe8dc;
+  --primary-border: #ffd4c1;
 
-  --primary-soft: #eaf3ff;
-  --primary-soft-hover: #e3efff;
-  --primary-border: #cfe2ff;
-
-  --page-bg: #f4f8fc;
+  /* ================= PAGE ================= */
+  --page-bg: #fffaf7;
   --card-bg: #ffffff;
 
-  --text-main: #172033;
-  --text-dark: #334155;
-  --text-muted: #64748b;
-  --text-light: #94a3b8;
+  /* ================= TEXT ================= */
+  --text-main: #7a3b18;
+  --text-dark: #9a4818;
+  --text-muted: #a66a48;
+  --text-light: #c49a82;
 
-  --border: #e2e8f0;
-  --border-light: #edf1f5;
+  /* ================= BORDER ================= */
+  --border: #f0ddd2;
+  --border-light: #f7ebe5;
 
-  /* SUCCESS */
-  --success-bg: #f0fdf4;
-  --success-border: #bbf7d0;
-  --success-text: #15803d;
+  /* ================= SUCCESS ================= */
+  --success-bg: #edf8ea;
+  --success-border: #cce6c5;
+  --success-text: #5d9b52;
 
-  /* WARNING */
-  --warning-bg: #fff7ed;
-  --warning-border: #fed7aa;
-  --warning-text: #c2410c;
+  /* ================= WARNING ================= */
+  --warning-bg: #fff6df;
+  --warning-border: #f8d99a;
+  --warning-text: #d88908;
 
-  /* DANGER */
-  --danger-bg: #fef2f2;
-  --danger-border: #fecaca;
-  --danger-text: #dc2626;
+  /* ================= DANGER ================= */
+  --danger-bg: #fff0f0;
+  --danger-border: #f5caca;
+  --danger-text: #d94d4d;
 }
 
 /* =========================================================
@@ -45,19 +49,17 @@
 
 .technician-dashboard {
   width: 100%;
-
   min-height: calc(100vh - 72px);
 
   box-sizing: border-box;
 
   padding: 34px 40px 45px;
 
-  background:
-    linear-gradient(
-      180deg,
-      #f7faff 0%,
-      #f3f7fc 100%
-    );
+  background: linear-gradient(
+    180deg,
+    #fffdfb 0%,
+    #fff8f4 100%
+  );
 
   color: var(--text-main);
 }
@@ -72,9 +74,7 @@
   margin: 0 auto 28px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 
   gap: 25px;
@@ -88,7 +88,6 @@
   color: var(--primary);
 
   font-size: 10px;
-
   font-weight: 800;
 
   letter-spacing: 1.6px;
@@ -100,7 +99,6 @@
   color: var(--text-main);
 
   font-size: 32px;
-
   font-weight: 800;
 
   letter-spacing: -0.6px;
@@ -124,26 +122,22 @@
   min-height: 40px;
 
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
 
   gap: 7px;
 
   padding: 0 15px;
 
-  border:
-    1px solid var(--border);
+  border: 1px solid var(--border);
 
   border-radius: 9px;
 
-  background: #ffffff;
+  background: var(--card-bg);
 
   color: var(--text-muted);
 
   font-size: 11px;
-
   font-weight: 700;
 
   cursor: pointer;
@@ -152,7 +146,8 @@
     background 0.2s ease,
     border-color 0.2s ease,
     color 0.2s ease,
-    transform 0.2s ease;
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .refresh-btn:hover:not(:disabled) {
@@ -163,6 +158,9 @@
   color: var(--primary);
 
   transform: translateY(-1px);
+
+  box-shadow:
+    0 6px 15px rgba(255, 100, 17, 0.07);
 }
 
 .refresh-btn:disabled {
@@ -183,15 +181,12 @@
   padding: 13px 16px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   gap: 8px;
 
-  border:
-    1px solid var(--danger-border);
+  border: 1px solid var(--danger-border);
 
   border-radius: 10px;
 
@@ -200,7 +195,6 @@
   color: var(--danger-text);
 
   font-size: 11px;
-
   font-weight: 700;
 }
 
@@ -221,6 +215,10 @@
   gap: 15px;
 }
 
+/* =========================================================
+   STAT CARD
+========================================================= */
+
 .technician-stat-card {
   position: relative;
 
@@ -231,22 +229,20 @@
   box-sizing: border-box;
 
   display: flex;
-
   align-items: center;
 
   gap: 14px;
 
   padding: 20px;
 
-  background: #ffffff;
+  background: var(--card-bg);
 
-  border:
-    1px solid var(--border);
+  border: 1px solid var(--border);
 
   border-radius: 14px;
 
   box-shadow:
-    0 7px 24px rgba(15, 23, 42, 0.04);
+    0 7px 24px rgba(122, 59, 24, 0.04);
 
   transition:
     transform 0.2s ease,
@@ -254,7 +250,9 @@
     box-shadow 0.2s ease;
 }
 
-/* BLUE ACCENT */
+/* =========================================================
+   ORANGE ACCENT
+========================================================= */
 
 .technician-stat-card::before {
   content: "";
@@ -262,9 +260,7 @@
   position: absolute;
 
   top: 0;
-
   left: 0;
-
   right: 0;
 
   height: 3px;
@@ -278,7 +274,7 @@
   border-color: var(--primary-border);
 
   box-shadow:
-    0 13px 30px rgba(47, 128, 237, 0.08);
+    0 13px 30px rgba(255, 100, 17, 0.08);
 }
 
 /* =========================================================
@@ -287,15 +283,11 @@
 
 .stat-icon {
   width: 48px;
-
   height: 48px;
-
   min-width: 48px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   border-radius: 12px;
@@ -304,8 +296,7 @@
 
   color: var(--primary);
 
-  border:
-    1px solid var(--primary-border);
+  border: 1px solid var(--primary-border);
 }
 
 .technician-stat-card span {
@@ -316,7 +307,6 @@
   color: var(--text-muted);
 
   font-size: 10px;
-
   font-weight: 600;
 }
 
@@ -326,7 +316,6 @@
   color: var(--text-main);
 
   font-size: 25px;
-
   font-weight: 800;
 }
 
@@ -341,15 +330,14 @@
 
   overflow: hidden;
 
-  background: #ffffff;
+  background: var(--card-bg);
 
-  border:
-    1px solid var(--border);
+  border: 1px solid var(--border);
 
   border-radius: 15px;
 
   box-shadow:
-    0 7px 24px rgba(15, 23, 42, 0.04);
+    0 7px 24px rgba(122, 59, 24, 0.04);
 }
 
 /* =========================================================
@@ -358,24 +346,20 @@
 
 .section-header {
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 
   gap: 20px;
 
   padding: 21px 24px;
 
-  border-bottom:
-    1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
 
-  background:
-    linear-gradient(
-      180deg,
-      #ffffff,
-      #fbfdff
-    );
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #fffdfb 100%
+  );
 }
 
 .section-header > div span {
@@ -386,7 +370,6 @@
   color: var(--primary);
 
   font-size: 9px;
-
   font-weight: 800;
 
   letter-spacing: 1.4px;
@@ -398,7 +381,6 @@
   color: var(--text-main);
 
   font-size: 19px;
-
   font-weight: 800;
 }
 
@@ -419,11 +401,9 @@
 
   color: var(--primary);
 
-  border:
-    1px solid var(--primary-border);
+  border: 1px solid var(--primary-border);
 
   font-size: 10px;
-
   font-weight: 800;
 
   white-space: nowrap;
@@ -437,7 +417,6 @@
   padding: 16px 20px 20px;
 
   display: flex;
-
   flex-direction: column;
 
   gap: 12px;
@@ -454,12 +433,11 @@
 
   padding: 18px;
 
-  border:
-    1px solid var(--border-light);
+  border: 1px solid var(--border-light);
 
   border-radius: 12px;
 
-  background: #fafbfc;
+  background: #fffaf7;
 
   transition:
     background 0.2s ease,
@@ -468,7 +446,9 @@
     box-shadow 0.2s ease;
 }
 
-/* BLUE TOP LINE */
+/* =========================================================
+   ORANGE TOP LINE
+========================================================= */
 
 .technician-booking-card::before {
   content: "";
@@ -476,9 +456,7 @@
   position: absolute;
 
   top: 0;
-
   left: 0;
-
   right: 0;
 
   height: 2px;
@@ -494,7 +472,7 @@
   transform: translateY(-2px);
 
   box-shadow:
-    0 10px 23px rgba(15, 23, 42, 0.06);
+    0 10px 23px rgba(122, 59, 24, 0.06);
 }
 
 /* =========================================================
@@ -503,22 +481,18 @@
 
 .booking-top {
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 
   gap: 20px;
 
   padding-bottom: 15px;
 
-  border-bottom:
-    1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
 }
 
 .technician-booking-main {
   display: flex;
-
   align-items: center;
 
   gap: 12px;
@@ -528,23 +502,18 @@
 
 .service-icon {
   width: 45px;
-
   height: 45px;
-
   min-width: 45px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   border-radius: 11px;
 
   background: var(--primary-soft);
 
-  border:
-    1px solid var(--primary-border);
+  border: 1px solid var(--primary-border);
 
   color: var(--primary);
 }
@@ -557,7 +526,6 @@
   color: var(--primary);
 
   font-size: 8px;
-
   font-weight: 800;
 
   letter-spacing: 1.2px;
@@ -569,7 +537,6 @@
   color: var(--text-main);
 
   font-size: 14px;
-
   font-weight: 800;
 }
 
@@ -587,9 +554,7 @@
 
 .technician-status {
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
 
   padding: 7px 11px;
@@ -597,46 +562,50 @@
   border-radius: 20px;
 
   font-size: 9px;
-
   font-weight: 800;
 
   white-space: nowrap;
 }
 
-/* Assigned - Blue */
+/* =========================================================
+   ASSIGNED
+========================================================= */
 
 .technician-status.technician-assigned {
   background: var(--primary-soft);
 
-  color: var(--primary);
+  color: var(--primary-dark);
 
-  border:
-    1px solid var(--primary-border);
+  border: 1px solid var(--primary-border);
 }
 
-/* Accepted - Green */
+/* =========================================================
+   ACCEPTED
+========================================================= */
 
 .technician-status.accepted {
   background: var(--success-bg);
 
   color: var(--success-text);
 
-  border:
-    1px solid var(--success-border);
+  border: 1px solid var(--success-border);
 }
 
-/* In Progress - Orange */
+/* =========================================================
+   IN PROGRESS
+========================================================= */
 
 .technician-status.in-progress {
   background: var(--warning-bg);
 
   color: var(--warning-text);
 
-  border:
-    1px solid var(--warning-border);
+  border: 1px solid var(--warning-border);
 }
 
-/* Completed / Paid - Green */
+/* =========================================================
+   COMPLETED / PAID
+========================================================= */
 
 .technician-status.completed,
 .technician-status.paid {
@@ -644,19 +613,19 @@
 
   color: var(--success-text);
 
-  border:
-    1px solid var(--success-border);
+  border: 1px solid var(--success-border);
 }
 
-/* Cancelled - Red */
+/* =========================================================
+   CANCELLED
+========================================================= */
 
 .technician-status.cancelled {
   background: var(--danger-bg);
 
   color: var(--danger-text);
 
-  border:
-    1px solid var(--danger-border);
+  border: 1px solid var(--danger-border);
 }
 
 /* =========================================================
@@ -686,7 +655,6 @@
   color: var(--text-light);
 
   font-size: 8px;
-
   font-weight: 800;
 
   letter-spacing: 0.7px;
@@ -694,7 +662,6 @@
 
 .detail-value {
   display: flex;
-
   align-items: center;
 
   gap: 5px;
@@ -728,7 +695,6 @@
 
 .booking-price {
   display: flex;
-
   align-items: center;
 
   gap: 3px;
@@ -736,7 +702,6 @@
   color: var(--primary) !important;
 
   font-size: 15px !important;
-
   font-weight: 800;
 }
 
@@ -749,26 +714,24 @@
 
   padding: 11px 13px;
 
-  border:
-    1px solid var(--primary-border);
+  border: 1px solid var(--primary-border);
 
   border-radius: 9px;
 
-  background: #f8fbff;
+  background: var(--primary-soft);
 }
 
 .technician-notes span {
   color: var(--primary);
 
   font-size: 10px;
-
   font-weight: 800;
 }
 
 .technician-notes p {
   margin: 5px 0 0;
 
-  color: var(--text-muted);
+  color: var(--text-dark);
 
   font-size: 10px;
 
@@ -781,23 +744,19 @@
 
 .booking-actions {
   display: flex;
-
   align-items: center;
-
   justify-content: flex-end;
 
   gap: 9px;
 
   padding-top: 14px;
 
-  border-top:
-    1px solid var(--border-light);
+  border-top: 1px solid var(--border-light);
 }
 
 .response-area,
 .service-action-area {
   display: flex;
-
   align-items: center;
 
   gap: 9px;
@@ -813,9 +772,7 @@
   min-height: 35px;
 
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
 
   gap: 6px;
@@ -831,7 +788,6 @@
   color: var(--success-text);
 
   font-size: 10px;
-
   font-weight: 700;
 
   cursor: pointer;
@@ -843,12 +799,12 @@
 }
 
 .accept-btn:hover:not(:disabled) {
-  background: #e8f9ee;
+  background: #e6f5e1;
 
   transform: translateY(-1px);
 
   box-shadow:
-    0 7px 16px rgba(21, 128, 61, 0.10);
+    0 7px 16px rgba(93, 155, 82, 0.10);
 }
 
 /* =========================================================
@@ -859,26 +815,22 @@
   min-height: 35px;
 
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
 
   gap: 6px;
 
   padding: 0 13px;
 
-  border:
-    1px solid var(--danger-border);
+  border: 1px solid var(--danger-border);
 
   border-radius: 8px;
 
-  background: #ffffff;
+  background: var(--card-bg);
 
   color: var(--danger-text);
 
   font-size: 10px;
-
   font-weight: 700;
 
   cursor: pointer;
@@ -917,7 +869,6 @@
 .progress-text,
 .completed-text {
   display: inline-flex;
-
   align-items: center;
 
   gap: 6px;
@@ -927,7 +878,6 @@
   border-radius: 8px;
 
   font-size: 10px;
-
   font-weight: 700;
 }
 
@@ -935,22 +885,28 @@
   background: var(--success-bg);
 
   color: var(--success-text);
+
+  border: 1px solid var(--success-border);
 }
 
 .progress-text {
   background: var(--warning-bg);
 
   color: var(--warning-text);
+
+  border: 1px solid var(--warning-border);
 }
 
 .completed-text {
   background: var(--success-bg);
 
   color: var(--success-text);
+
+  border: 1px solid var(--success-border);
 }
 
 /* =========================================================
-   START SERVICE
+   START / COMPLETE
 ========================================================= */
 
 .start-service-btn,
@@ -958,9 +914,7 @@
   min-height: 35px;
 
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
 
   gap: 6px;
@@ -974,7 +928,6 @@
   color: #ffffff;
 
   font-size: 10px;
-
   font-weight: 700;
 
   cursor: pointer;
@@ -985,13 +938,15 @@
     box-shadow 0.2s ease;
 }
 
-/* Start = Blue */
+/* =========================================================
+   START SERVICE — ORANGE
+========================================================= */
 
 .start-service-btn {
   background: var(--primary);
 
   box-shadow:
-    0 6px 15px rgba(47, 128, 237, 0.16);
+    0 6px 15px rgba(255, 100, 17, 0.16);
 }
 
 .start-service-btn:hover:not(:disabled) {
@@ -1000,25 +955,27 @@
   transform: translateY(-1px);
 
   box-shadow:
-    0 8px 18px rgba(47, 128, 237, 0.23);
+    0 8px 18px rgba(255, 100, 17, 0.23);
 }
 
-/* Complete = Green */
+/* =========================================================
+   COMPLETE SERVICE — SUCCESS
+========================================================= */
 
 .complete-service-btn {
   background: var(--success-text);
 
   box-shadow:
-    0 6px 15px rgba(21, 128, 61, 0.16);
+    0 6px 15px rgba(93, 155, 82, 0.16);
 }
 
 .complete-service-btn:hover:not(:disabled) {
-  background: #166534;
+  background: #4f8a45;
 
   transform: translateY(-1px);
 
   box-shadow:
-    0 8px 18px rgba(21, 128, 61, 0.22);
+    0 8px 18px rgba(93, 155, 82, 0.22);
 }
 
 /* =========================================================
@@ -1029,11 +986,9 @@
   min-height: 230px;
 
   display: flex;
-
   flex-direction: column;
 
   align-items: center;
-
   justify-content: center;
 
   gap: 10px;
@@ -1060,11 +1015,9 @@
   padding: 50px 20px;
 
   display: flex;
-
   flex-direction: column;
 
   align-items: center;
-
   justify-content: center;
 
   text-align: center;
@@ -1072,13 +1025,10 @@
 
 .empty-icon {
   width: 60px;
-
   height: 60px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   margin-bottom: 13px;
@@ -1087,8 +1037,7 @@
 
   background: var(--primary-soft);
 
-  border:
-    1px solid var(--primary-border);
+  border: 1px solid var(--primary-border);
 
   color: var(--primary);
 }
@@ -1099,7 +1048,6 @@
   color: var(--text-main);
 
   font-size: 17px;
-
   font-weight: 800;
 }
 

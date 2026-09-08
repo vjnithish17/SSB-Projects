@@ -1,7 +1,23 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+
+import {
+  Wrench,
+  Mail,
+  LockKeyhole,
+  Eye,
+  EyeOff,
+  ArrowRight,
+  User,
+  CalendarDays,
+  HardHat,
+  MapPin,
+  CircleCheck,
+} from "lucide-react";
+
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
+
 import "./auth.css";
 
 const Auth = () => {
@@ -29,17 +45,20 @@ const Auth = () => {
   const [loginLoading, setLoginLoading] = useState(false);
   const [registerLoading, setRegisterLoading] = useState(false);
 
-  // =========================
-  // ROUTE CHANGE
-  // =========================
+  const [showLoginPassword, setShowLoginPassword] = useState(false);
+  const [showRegisterPassword, setShowRegisterPassword] = useState(false);
+
+  /* =====================================================
+     ROUTE CHANGE
+  ===================================================== */
 
   useEffect(() => {
     setIsRegister(location.pathname === "/register");
   }, [location.pathname]);
 
-  // =========================
-  // LOGIN INPUT
-  // =========================
+  /* =====================================================
+     LOGIN INPUT
+  ===================================================== */
 
   const handleLoginChange = (e) => {
     setLoginData((prev) => ({
@@ -48,9 +67,20 @@ const Auth = () => {
     }));
   };
 
-  // =========================
-  // LOGIN
-  // =========================
+  /* =====================================================
+     REGISTER INPUT
+  ===================================================== */
+
+  const handleRegisterChange = (e) => {
+    setRegisterData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  /* =====================================================
+     LOGIN
+  ===================================================== */
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -68,12 +98,9 @@ const Auth = () => {
     try {
       setLoginLoading(true);
 
-      const result = await login(
-        loginData.email.trim(),
-        loginData.password,
-      );
+      const result = await login(loginData.email.trim(), loginData.password);
 
-      if (!result.success) {
+      if (!result?.success) {
         return;
       }
 
@@ -94,20 +121,9 @@ const Auth = () => {
     }
   };
 
-  // =========================
-  // REGISTER INPUT
-  // =========================
-
-  const handleRegisterChange = (e) => {
-    setRegisterData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  // =========================
-  // REGISTER
-  // =========================
+  /* =====================================================
+     REGISTER
+  ===================================================== */
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -128,10 +144,7 @@ const Auth = () => {
     }
 
     if (registerData.password.length < 6) {
-      showToast(
-        "Password must be at least 6 characters",
-        "warning",
-      );
+      showToast("Password must be at least 6 characters", "warning");
       return;
     }
 
@@ -144,7 +157,7 @@ const Auth = () => {
         email: registerData.email.trim(),
       });
 
-      if (!result.success) {
+      if (!result?.success) {
         return;
       }
 
@@ -154,200 +167,347 @@ const Auth = () => {
     }
   };
 
-  // =========================
-  // SWITCH TO REGISTER
-  // =========================
-
-  const showRegister = () => {
-    setIsRegister(true);
-    navigate("/register");
-  };
-
-  // =========================
-  // SWITCH TO LOGIN
-  // =========================
+  /* =====================================================
+     SWITCH TO LOGIN
+  ===================================================== */
 
   const showLogin = () => {
     setIsRegister(false);
     navigate("/login");
   };
 
+  /* =====================================================
+     SWITCH TO REGISTER
+  ===================================================== */
+
+  const showRegister = () => {
+    setIsRegister(true);
+    navigate("/register");
+  };
+
   return (
-    <div
-      className={`auth-page ${
-        isRegister ? "show-register" : ""
-      }`}
-    >
-      <div className="auth-wrapper">
+    <main className="auth-page">
+      {/* =================================================
+          BACKGROUND
+      ================================================= */}
 
-        {/* ======================
-            LOGIN FORM
-        ====================== */}
-
-        <div className="auth-form login-form">
-          <form onSubmit={handleLogin}>
-            <h1>Welcome Back</h1>
-
-            <p className="auth-subtitle">
-              Login to Smart Service Booking
-            </p>
-
-            <div className="auth-input">
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={loginData.email}
-                onChange={handleLoginChange}
-                autoComplete="email"
-              />
-            </div>
-
-            <div className="auth-input">
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={loginData.password}
-                onChange={handleLoginChange}
-                autoComplete="current-password"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="auth-btn"
-              disabled={loginLoading}
-            >
-              {loginLoading
-                ? "Logging in..."
-                : "LOGIN"}
-            </button>
-          </form>
-
-          <p className="mobile-auth-switch">
-            Don't have an account?
-
-            <button
-              type="button"
-              onClick={showRegister}
-            >
-              Sign Up
-            </button>
-          </p>
-        </div>
-
-        {/* ======================
-            REGISTER FORM
-        ====================== */}
-
-        <div className="auth-form register-form">
-          <form onSubmit={handleRegister}>
-            <h1>Create Account</h1>
-
-            <p className="auth-subtitle">
-              Register for Smart Service Booking
-            </p>
-
-            <div className="auth-input">
-              <input
-                type="text"
-                name="name"
-                placeholder="Name"
-                value={registerData.name}
-                onChange={handleRegisterChange}
-                autoComplete="name"
-              />
-            </div>
-
-            <div className="auth-input">
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={registerData.email}
-                onChange={handleRegisterChange}
-                autoComplete="email"
-              />
-            </div>
-
-            <div className="auth-input">
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={registerData.password}
-                onChange={handleRegisterChange}
-                autoComplete="new-password"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="auth-btn"
-              disabled={registerLoading}
-            >
-              {registerLoading
-                ? "Creating..."
-                : "REGISTER"}
-            </button>
-          </form>
-
-          <p className="mobile-auth-switch">
-            Already have an account?
-
-            <button
-              type="button"
-              onClick={showLogin}
-            >
-              Sign In
-            </button>
-          </p>
-        </div>
-
-        {/* ======================
-            SLIDING PANEL
-        ====================== */}
-
-        <div className="auth-overlay">
-
-          <div className="overlay-panel overlay-left">
-            <h1>Welcome Back!</h1>
-
-            <p>
-              Keep connected with us. Login with
-              your personal info to continue.
-            </p>
-
-            <button
-              type="button"
-              className="ghost-btn"
-              onClick={showLogin}
-            >
-              LOG IN
-            </button>
-          </div>
-
-          <div className="overlay-panel overlay-right">
-            <h1>Hello, Friend!</h1>
-
-            <p>
-              Enter your personal details and start
-              your journey with us.
-            </p>
-
-            <button
-              type="button"
-              className="ghost-btn"
-              onClick={showRegister}
-            >
-              SIGN UP
-            </button>
-          </div>
-
-        </div>
+      <div className="auth-background">
+        <div className="background-glow glow-one"></div>
+        <div className="background-glow glow-two"></div>
       </div>
-    </div>
+
+      {/* =================================================
+          MAIN LAYOUT
+      ================================================= */}
+
+      <section className="auth-layout">
+        {/* =================================================
+            AUTH CARD
+        ================================================= */}
+
+        <div className="auth-card">
+          {/* =================================================
+              BRAND
+          ================================================= */}
+
+          <div className="auth-brand">
+            <div className="brand-logo">
+              <Wrench size={31} strokeWidth={3} />
+            </div>
+
+            <div className="brand-name">
+              <h2>Smart Service</h2>
+              <span>Booking</span>
+            </div>
+          </div>
+
+          {/* =================================================
+              LOGIN PAGE
+          ================================================= */}
+
+          {!isRegister && (
+            <div className="auth-content">
+              <div className="orange-line"></div>
+
+              <h1>Welcome Back</h1>
+
+              <p className="auth-description">
+                Sign in to your account to continue your service journey.
+              </p>
+
+              <form className="auth-form" onSubmit={handleLogin}>
+                {/* EMAIL */}
+
+                <div className="input-wrapper">
+                  <Mail className="input-icon" size={21} />
+
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    value={loginData.email}
+                    onChange={handleLoginChange}
+                    autoComplete="email"
+                  />
+                </div>
+
+                {/* PASSWORD */}
+
+                <div className="input-wrapper">
+                  <LockKeyhole className="input-icon" size={21} />
+
+                  <input
+                    type={showLoginPassword ? "text" : "password"}
+                    name="password"
+                    placeholder="Password"
+                    value={loginData.password}
+                    onChange={handleLoginChange}
+                    autoComplete="current-password"
+                  />
+
+                  <button
+                    type="button"
+                    className="password-button"
+                    onClick={() => setShowLoginPassword((prev) => !prev)}
+                    aria-label="Show or hide password"
+                  >
+                    {showLoginPassword ? (
+                      <EyeOff size={20} />
+                    ) : (
+                      <Eye size={20} />
+                    )}
+                  </button>
+                </div>
+
+                {/* LOGIN BUTTON */}
+
+                <button
+                  type="submit"
+                  className="auth-button"
+                  disabled={loginLoading}
+                >
+                  <span>{loginLoading ? "Logging in..." : "Login"}</span>
+
+                  {!loginLoading && <ArrowRight size={21} />}
+                </button>
+              </form>
+
+              {/* REGISTER LINK */}
+
+              <div className="account-switch">
+                <span>Don’t have an account?</span>
+
+                <button type="button" onClick={showRegister}>
+                  Register Now
+                  <ArrowRight size={16} />
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* =================================================
+              REGISTER PAGE
+          ================================================= */}
+
+          {isRegister && (
+            <div className="auth-content register-content">
+              <div className="orange-line"></div>
+
+              <h1>Create Account</h1>
+
+              <p className="auth-description">
+                Create your account and start your service journey.
+              </p>
+
+              <form className="auth-form" onSubmit={handleRegister}>
+                {/* NAME */}
+
+                <div className="input-wrapper">
+                  <User className="input-icon" size={21} />
+
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Full Name"
+                    value={registerData.name}
+                    onChange={handleRegisterChange}
+                    autoComplete="name"
+                  />
+                </div>
+
+                {/* EMAIL */}
+
+                <div className="input-wrapper">
+                  <Mail className="input-icon" size={21} />
+
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    value={registerData.email}
+                    onChange={handleRegisterChange}
+                    autoComplete="email"
+                  />
+                </div>
+
+                {/* PASSWORD */}
+
+                <div className="input-wrapper">
+                  <LockKeyhole className="input-icon" size={21} />
+
+                  <input
+                    type={showRegisterPassword ? "text" : "password"}
+                    name="password"
+                    placeholder="Password"
+                    value={registerData.password}
+                    onChange={handleRegisterChange}
+                    autoComplete="new-password"
+                  />
+
+                  <button
+                    type="button"
+                    className="password-button"
+                    onClick={() => setShowRegisterPassword((prev) => !prev)}
+                    aria-label="Show or hide password"
+                  >
+                    {showRegisterPassword ? (
+                      <EyeOff size={20} />
+                    ) : (
+                      <Eye size={20} />
+                    )}
+                  </button>
+                </div>
+
+                {/* REGISTER BUTTON */}
+
+                <button
+                  type="submit"
+                  className="auth-button"
+                  disabled={registerLoading}
+                >
+                  <span>
+                    {registerLoading ? "Creating..." : "Create Account"}
+                  </span>
+
+                  {!registerLoading && <ArrowRight size={21} />}
+                </button>
+              </form>
+
+              {/* LOGIN LINK */}
+
+              <div className="account-switch">
+                <span>Already have an account?</span>
+
+                <button type="button" onClick={showLogin}>
+                  Sign In
+                  <ArrowRight size={16} />
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* =================================================
+            RIGHT SIDE - SERVICE JOURNEY
+        ================================================= */}
+
+        <div className="right-content">
+          <div className="service-journey">
+            {/* JOURNEY TITLE */}
+
+            <div className="journey-title">
+              <span>From Booking</span>
+
+              <br />
+
+              <span>to Completion</span>
+
+              <div className="journey-underline"></div>
+            </div>
+
+            {/* =================================================
+                BOOK
+            ================================================= */}
+
+            <div className="journey-step">
+              <div className="journey-icon active">
+                <CalendarDays size={29} strokeWidth={2.5} />
+              </div>
+
+              <div className="journey-text">
+                <h3>BOOK</h3>
+
+                <p>
+                  Schedule your service
+                  <br />
+                  at your convenience.
+                </p>
+              </div>
+            </div>
+
+            {/* =================================================
+                ASSIGN
+            ================================================= */}
+
+            <div className="journey-step">
+              <div className="journey-icon">
+                <HardHat size={29} strokeWidth={2.5} />
+              </div>
+
+              <div className="journey-text">
+                <h3>ASSIGN</h3>
+
+                <p>
+                  We assign the best
+                  <br />
+                  technician for your service.
+                </p>
+              </div>
+            </div>
+
+            {/* =================================================
+                TRACK
+            ================================================= */}
+
+            <div className="journey-step">
+              <div className="journey-icon">
+                <MapPin size={29} strokeWidth={2.5} />
+              </div>
+
+              <div className="journey-text">
+                <h3>TRACK</h3>
+
+                <p>
+                  Track your technician
+                  <br />
+                  in real-time.
+                </p>
+              </div>
+            </div>
+
+            {/* =================================================
+                COMPLETE
+            ================================================= */}
+
+            <div className="journey-step complete-step">
+              <div className="journey-icon complete">
+                <CircleCheck size={30} strokeWidth={2.5} />
+              </div>
+
+              <div className="journey-text">
+                <h3>COMPLETE</h3>
+
+                <p>
+                  Your service is completed
+                  <br />
+                  with satisfaction.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 };
 

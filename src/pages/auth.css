@@ -1,268 +1,400 @@
 /* =========================================================
    SMART SERVICE BOOKING
-   AUTH PAGE
-   PREMIUM GLASSMORPHISM
+   PREMIUM AUTH PAGE
 ========================================================= */
 
 :root {
-  --primary: #2f80ed;
-  --primary-dark: #2563eb;
+  --orange: #ff6b1a;
+  --orange-light: #ff7b29;
+  --orange-dark: #f35b0b;
 
-  --primary-soft: #eaf3ff;
-  --primary-border: #cfe2ff;
+  --navy: #172f55;
+  --navy-soft: #526987;
 
-  --page-bg: #eef5fc;
-
-  --text-main: #172033;
-  --text-muted: #64748b;
-
-  --border: rgba(255, 255, 255, 0.7);
-  --border-light: rgba(226, 232, 240, 0.7);
-
-  --danger-bg: #fef2f2;
-  --danger-border: #fecaca;
-  --danger-text: #dc2626;
+  --white: #ffffff;
+  --border: #dce5ef;
+  --page-bg: #f7fafc;
 }
 
-body{
-  margin: auto;
-}
 
 /* =========================================================
-   AUTH PAGE
+   GLOBAL RESET
+========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family:
+    Inter,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+
+  background: var(--page-bg);
+}
+
+
+/* =========================================================
+   MAIN PAGE
 ========================================================= */
 
 .auth-page {
-  min-height: 100vh;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+
+  position: relative;
 
   display: flex;
-
+  align-items: center;
   justify-content: center;
 
+  overflow: hidden;
+  isolation: isolate;
+
+  background: #f7fafc;
+}
+
+
+/* =========================================================
+   FULL BACKGROUND
+========================================================= */
+
+.auth-background {
+  position: absolute;
+  inset: 0;
+
+  z-index: -3;
+
+  background-image: url("/service-bg1.jpeg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+
+/* =========================================================
+   BACKGROUND GLOW
+========================================================= */
+
+.background-glow {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  filter: blur(80px);
+
+  opacity: 0.35;
+}
+
+.glow-one {
+  width: 260px;
+  height: 260px;
+
+  left: -120px;
+  top: 10%;
+
+  background: rgba(255, 107, 26, 0.08);
+}
+
+.glow-two {
+  width: 280px;
+  height: 280px;
+
+  right: -130px;
+  bottom: 5%;
+
+  background: rgba(255, 173, 119, 0.12);
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
+
+.auth-layout {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
   align-items: center;
 
-  padding: 20px;
-
-  box-sizing: border-box;
+  padding: 0 clamp(30px, 8vw, 125px);
 
   position: relative;
+  z-index: 2;
 
   overflow: hidden;
-
-  background:
-    radial-gradient(
-      circle at 10% 15%,
-      rgba(47, 128, 237, 0.18),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 90% 85%,
-      rgba(37, 99, 235, 0.14),
-      transparent 30%
-    ),
-    linear-gradient(
-      135deg,
-      #f8fbff 0%,
-      #edf5fc 50%,
-      #f7fbff 100%
-    );
 }
 
 
 /* =========================================================
-   DECORATIVE LIGHT BLOBS
+   AUTH CARD
 ========================================================= */
 
-.auth-page::before {
-  content: "";
+.auth-card {
+  width: min(658px, 38vw);
 
-  position: absolute;
+  height: auto;
+  min-height: 0;
+  max-height: calc(100dvh - 42px);
 
-  width: 320px;
-
-  height: 320px;
-
-  top: -140px;
-
-  left: -100px;
-
-  border-radius: 50%;
-
-  background: rgba(47, 128, 237, 0.10);
-
-  filter: blur(10px);
-
-  pointer-events: none;
-}
-
-.auth-page::after {
-  content: "";
-
-  position: absolute;
-
-  width: 300px;
-
-  height: 300px;
-
-  right: -100px;
-
-  bottom: -120px;
-
-  border-radius: 50%;
-
-  background: rgba(37, 99, 235, 0.10);
-
-  filter: blur(12px);
-
-  pointer-events: none;
-}
-
-
-/* =========================================================
-   MAIN GLASS CARD
-========================================================= */
-
-.auth-wrapper {
   position: relative;
 
-  width: 100%;
+  display: flex;
+  flex-direction: column;
 
-  max-width: 1000px;
-
-  height: 600px;
+  padding: 40px 52px 28px;
 
   overflow: hidden;
 
-  background:
-    rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.9);
 
-  border-radius: 28px;
+  border-radius: 26px;
 
-  border:
-    1px solid rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.94);
 
   box-shadow:
-    0 30px 80px rgba(15, 23, 42, 0.14),
-    0 8px 25px rgba(47, 128, 237, 0.06);
+    0 30px 80px rgba(23, 47, 85, 0.1),
+    0 8px 30px rgba(23, 47, 85, 0.06);
 
   backdrop-filter: blur(22px);
-
   -webkit-backdrop-filter: blur(22px);
 }
 
 
 /* =========================================================
-   FORMS
+   BRAND
 ========================================================= */
 
-.auth-form {
-  position: absolute;
-
-  top: 0;
-
-  width: 50%;
-
-  height: 100%;
-
+.auth-brand {
   display: flex;
-
-  justify-content: center;
-
   align-items: center;
 
-  padding: 50px;
+  gap: 16px;
 
-  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  width: 59px;
+  height: 59px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+
+  border-radius: 15px;
 
   background:
-    rgba(255, 255, 255, 0.58);
+    linear-gradient(
+      135deg,
+      #ff7824 0%,
+      #ff5d0a 100%
+    );
 
-  backdrop-filter: blur(18px);
-
-  -webkit-backdrop-filter: blur(18px);
-
-  transition:
-    transform 0.8s
-    cubic-bezier(0.68, -0.55, 0.265, 1.55);
-
-  z-index: 2;
+  box-shadow:
+    0 12px 25px
+    rgba(255, 107, 26, 0.18);
 }
 
-.auth-form form {
-  width: 100%;
+.brand-name h2 {
+  margin: 0;
 
-  max-width: 350px;
-}
+  color: var(--navy);
 
-
-/* =========================================================
-   LOGIN
-========================================================= */
-
-.login-form {
-  left: 0;
-
-  transform: translateX(0);
-}
-
-
-/* =========================================================
-   REGISTER
-========================================================= */
-
-.register-form {
-  right: 0;
-
-  transform: translateX(100%);
-}
-
-
-/* =========================================================
-   REGISTER STATE
-========================================================= */
-
-.auth-page.show-register .login-form {
-  transform: translateX(-100%);
-}
-
-.auth-page.show-register .register-form {
-  transform: translateX(0);
-}
-
-
-/* =========================================================
-   FORM TITLE
-========================================================= */
-
-.auth-form h1 {
-  margin: 0 0 10px;
-
-  text-align: center;
-
-  color: var(--text-main);
-
-  font-size: 34px;
+  font-size: 27px;
+  line-height: 1;
 
   font-weight: 800;
 
-  letter-spacing: -0.8px;
+  letter-spacing: -0.7px;
+}
+
+.brand-name span {
+  display: block;
+
+  margin-top: 5px;
+
+  color: #657995;
+
+  font-size: 19px;
+  line-height: 1;
 }
 
 
 /* =========================================================
-   SUBTITLE
+   CONTENT
 ========================================================= */
 
-.auth-subtitle {
-  margin: 0 0 30px;
+.auth-content {
+  width: 100%;
 
-  text-align: center;
+  margin-top: 43px;
 
-  color: var(--text-muted);
+  position: relative;
+  z-index: 2;
+}
+
+.register-content {
+  margin-top: 29px;
+}
+
+
+/* =========================================================
+   ORANGE LINE
+========================================================= */
+
+.orange-line {
+  width: 33px;
+  height: 4px;
+
+  margin-bottom: 14px;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff6b1a,
+      #ff8a45
+    );
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.auth-content h1 {
+  margin: 0 0 10px;
+
+  color: var(--navy);
+
+  font-size: 36px;
+  line-height: 1.1;
+
+  font-weight: 800;
+
+  letter-spacing: -1.2px;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.auth-description {
+  width: 410px;
+  max-width: 100%;
+
+  margin: 0 0 26px;
+
+  color: #60738e;
 
   font-size: 14px;
+  line-height: 1.6;
+}
 
-  line-height: 1.5;
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.auth-form {
+  width: 100%;
+}
+
+
+/* =========================================================
+   INPUT WRAPPER
+========================================================= */
+
+.input-wrapper {
+  width: 100%;
+  height: 57px;
+
+  margin-bottom: 15px;
+
+  display: flex;
+  align-items: center;
+
+  position: relative;
+
+  border: 1px solid rgba(211, 222, 234, 0.95);
+
+  border-radius: 11px;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  overflow: hidden;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.input-wrapper:hover {
+  border-color:
+    rgba(255, 107, 26, 0.28);
+}
+
+.input-wrapper:focus-within {
+  border-color:
+    rgba(255, 107, 26, 0.68);
+
+  box-shadow:
+    0 0 0 4px
+      rgba(255, 107, 26, 0.075),
+
+    0 8px 20px
+      rgba(255, 107, 26, 0.055);
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   INPUT ICON
+========================================================= */
+
+.input-icon {
+  position: absolute;
+
+  left: 18px;
+
+  color: #7187a2;
+
+  pointer-events: none;
+
+  z-index: 2;
 }
 
 
@@ -270,70 +402,70 @@ body{
    INPUT
 ========================================================= */
 
-.auth-input {
-  margin-bottom: 18px;
-}
-
-.auth-input input {
+.input-wrapper input {
   width: 100%;
+  height: 100%;
 
-  height: 52px;
+  padding:
+    0
+    55px
+    0
+    58px;
 
-  padding: 0 17px;
-
-  box-sizing: border-box;
-
-  border:
-    1px solid rgba(203, 213, 225, 0.75);
-
-  border-radius: 12px;
-
+  border: none;
   outline: none;
 
-  background:
-    rgba(248, 250, 252, 0.72);
+  background: transparent;
 
-  color: var(--text-main);
-
-  font-size: 14px;
+  color: var(--navy);
 
   font-family: inherit;
+  font-size: 14px;
+}
 
-  backdrop-filter: blur(10px);
+.input-wrapper input::placeholder {
+  color: #8798ad;
+}
 
-  -webkit-backdrop-filter: blur(10px);
+.input-wrapper input:focus {
+  color: var(--navy);
+}
+
+
+/* =========================================================
+   PASSWORD BUTTON
+========================================================= */
+
+.password-button {
+  width: 36px;
+  height: 36px;
+
+  position: absolute;
+  right: 9px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+
+  background: transparent;
+
+  color: #8a9bb0;
+
+  cursor: pointer;
 
   transition:
-    background 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
-    transform 0.25s ease;
+    color 0.2s ease,
+    background 0.2s ease;
 }
 
-.auth-input input::placeholder {
-  color: #94a3b8;
-}
-
-.auth-input input:hover {
-  border-color:
-    rgba(47, 128, 237, 0.35);
+.password-button:hover {
+  color: var(--orange);
 
   background:
-    rgba(255, 255, 255, 0.85);
-}
-
-.auth-input input:focus {
-  background:
-    rgba(255, 255, 255, 0.95);
-
-  border-color:
-    rgba(47, 128, 237, 0.65);
-
-  box-shadow:
-    0 0 0 4px rgba(47, 128, 237, 0.09),
-    0 8px 20px rgba(47, 128, 237, 0.06);
-
-  transform: translateY(-1px);
+    rgba(255, 107, 26, 0.07);
 }
 
 
@@ -341,61 +473,68 @@ body{
    MAIN BUTTON
 ========================================================= */
 
-.auth-btn {
+.auth-button {
   width: 100%;
+  height: 61px;
 
-  height: 52px;
+  margin-top: 2px;
 
-  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
 
   border: none;
-
-  border-radius: 12px;
+  border-radius: 11px;
 
   background:
     linear-gradient(
       135deg,
-      #3185f5 0%,
-      #2563eb 100%
+      #ff7620 0%,
+      #ff6513 100%
     );
 
   color: #ffffff;
 
-  font-size: 14px;
+  font-family: inherit;
 
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 750;
 
   cursor: pointer;
 
   box-shadow:
-    0 10px 25px rgba(47, 128, 237, 0.22);
+    0 12px 26px
+    rgba(255, 107, 26, 0.21);
 
   transition:
     transform 0.25s ease,
-    background 0.25s ease,
-    box-shadow 0.25s ease;
+    box-shadow 0.25s ease,
+    background 0.25s ease;
 }
 
-.auth-btn:hover {
+.auth-button:hover {
+  transform: translateY(-2px);
+
   background:
     linear-gradient(
       135deg,
-      #2563eb 0%,
-      #1d4ed8 100%
+      #ff812d 0%,
+      #ff6815 100%
     );
 
-  transform: translateY(-2px);
-
   box-shadow:
-    0 14px 30px rgba(47, 128, 237, 0.28);
+    0 17px 34px
+    rgba(255, 107, 26, 0.27);
 }
 
-.auth-btn:active {
+.auth-button:active {
   transform: translateY(0);
 }
 
-.auth-btn:disabled {
-  opacity: 0.6;
+.auth-button:disabled {
+  opacity: 0.65;
 
   cursor: not-allowed;
 
@@ -406,291 +545,441 @@ body{
 
 
 /* =========================================================
-   GLASS OVERLAY
+   ACCOUNT SWITCH
 ========================================================= */
 
-.auth-overlay {
-  position: absolute;
+.account-switch {
+  width: 100%;
 
-  top: 0;
+  margin-top: 28px;
 
-  right: 0;
+  padding-top: 18px;
 
-  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  border-top: 1px solid #e3e9f0;
+
+  color: #60738e;
+
+  font-size: 13px;
+
+  position: relative;
+  z-index: 5;
+
+  flex-shrink: 0;
+}
+
+.register-content .account-switch {
+  margin-top: 25px;
+}
+
+.account-switch button {
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: var(--orange);
+
+  font-family: inherit;
+
+  font-size: 13px;
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.account-switch button:hover {
+  color: var(--orange-dark);
+
+  transform: translateX(2px);
+}
+
+
+/* =========================================================
+   RIGHT CONTENT
+========================================================= */
+
+.right-content {
+  flex: 1;
+
+  min-width: 0;
 
   height: 100%;
 
+  position: relative;
+
   overflow: hidden;
+}
 
-  z-index: 10;
 
-  border-radius: 28px;
+/* =========================================================
+   SERVICE JOURNEY
+========================================================= */
+
+.service-journey {
+  position: absolute;
+
+  top: 50%;
+  right: clamp(20px, 5vw, 80px);
+
+  width: 489px;
+
+  transform: translateY(-50%);
+
+  z-index: 5;
+}
+
+
+/* =========================================================
+   JOURNEY TITLE
+========================================================= */
+
+.journey-title {
+  position: absolute;
+
+  top: -115px;
+  right: 49px;
+
+  color: var(--orange);
+
+  font-size: 25px;
+  font-weight: 700;
+
+  line-height: 1.15;
+
+  font-style: italic;
+
+  text-align: center;
+
+  transform: rotate(-4deg);
+
+  white-space: nowrap;
+}
+
+.journey-title span {
+  display: inline-block;
+}
+
+
+/* =========================================================
+   JOURNEY UNDERLINE
+========================================================= */
+
+.journey-underline {
+  width: 150px;
+  height: 3px;
+
+  margin-top: 9px;
+  margin-left: auto;
+
+  border-radius: 50%;
+
+  background: var(--orange);
+
+  transform: rotate(-3deg);
+}
+
+
+/* =========================================================
+   JOURNEY STEP
+========================================================= */
+
+.journey-step {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  gap: 20px;
+
+  margin-bottom: 26px;
+}
+
+
+/* =========================================================
+   CONNECTING LINE
+========================================================= */
+
+.journey-step:not(:last-child)::after {
+  content: "";
+
+  position: absolute;
+
+  left: 28px;
+  top: 68px;
+
+  width: 14px;
+  height: 42px;
+
+  z-index: 0;
+
+  border-left: 2px solid transparent;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255, 107, 26, 0.85),
+      rgba(255, 107, 26, 0.20)
+    );
+
+  clip-path: polygon(
+    35% 0%,
+    70% 8%,
+    82% 20%,
+    78% 32%,
+    55% 42%,
+    30% 50%,
+    20% 62%,
+    25% 76%,
+    48% 88%,
+    65% 100%,
+    35% 100%,
+    12% 88%,
+    5% 75%,
+    10% 60%,
+    32% 48%,
+    58% 38%,
+    65% 27%,
+    60% 16%,
+    45% 8%
+  );
+}
+
+
+/* =========================================================
+   JOURNEY ICON
+========================================================= */
+
+.journey-icon {
+  width: 70px;
+  height: 70px;
+
+  min-width: 70px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  color: var(--orange);
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.94);
+
+  border: 5px solid
+    rgba(255, 255, 255, 0.90);
+
+  box-shadow:
+    0 8px 25px
+      rgba(23, 47, 85, 0.08),
+
+    0 3px 10px
+      rgba(255, 107, 26, 0.08);
+
+  z-index: 2;
+}
+
+
+/* =========================================================
+   ACTIVE BOOK ICON
+========================================================= */
+
+.journey-icon.active {
+  color: #ffffff;
 
   background:
     linear-gradient(
       135deg,
-      rgba(47, 128, 237, 0.96) 0%,
-      rgba(37, 99, 235, 0.94) 100%
+      #ff7620 0%,
+      #ff5f0b 100%
     );
 
+  border-color: #ffffff;
+
   box-shadow:
-    -15px 0 40px rgba(47, 128, 237, 0.12);
+    0 10px 25px
+      rgba(255, 107, 26, 0.25),
 
-  backdrop-filter: blur(18px);
-
-  -webkit-backdrop-filter: blur(18px);
-
-  transition:
-    transform 0.8s
-    cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    0 0 0 2px
+      rgba(255, 107, 26, 0.08);
 }
 
 
 /* =========================================================
-   OVERLAY LIGHT EFFECT
+   COMPLETE ICON
 ========================================================= */
 
-.auth-overlay::before {
-  content: "";
+.journey-icon.complete {
+  color: #69ad58;
 
-  position: absolute;
+  background: #edf8ea;
 
-  width: 280px;
-
-  height: 280px;
-
-  top: -120px;
-
-  right: -100px;
-
-  border-radius: 50%;
-
-  background:
-    rgba(255, 255, 255, 0.10);
-
-  filter: blur(5px);
-}
-
-.auth-overlay::after {
-  content: "";
-
-  position: absolute;
-
-  width: 220px;
-
-  height: 220px;
-
-  bottom: -100px;
-
-  left: -80px;
-
-  border-radius: 50%;
-
-  background:
-    rgba(255, 255, 255, 0.08);
-
-  filter: blur(8px);
+  border-color: #ffffff;
 }
 
 
 /* =========================================================
-   MOVE OVERLAY LEFT
+   JOURNEY TEXT
 ========================================================= */
 
-.auth-page.show-register .auth-overlay {
-  transform: translateX(-100%);
+.journey-text {
+  position: relative;
+
+  z-index: 2;
 }
 
+.journey-text h3 {
+  margin: 0 0 5px;
 
-/* =========================================================
-   OVERLAY PANEL
-========================================================= */
+  color: var(--navy);
 
-.overlay-panel {
-  position: absolute;
+  font-size: 18px;
 
-  top: 0;
-
-  left: 0;
-
-  width: 100%;
-
-  height: 100%;
-
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: center;
-
-  align-items: center;
-
-  padding: 50px;
-
-  box-sizing: border-box;
-
-  text-align: center;
-
-  color: #ffffff;
-
-  transition:
-    transform 0.8s
-    cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-
-/* =========================================================
-   LOGIN PANEL
-========================================================= */
-
-.overlay-left {
-  transform: translateX(-100%);
-}
-
-
-/* =========================================================
-   REGISTER PANEL
-========================================================= */
-
-.overlay-right {
-  transform: translateX(0);
-}
-
-
-/* =========================================================
-   REGISTER STATE
-========================================================= */
-
-.auth-page.show-register .overlay-left {
-  transform: translateX(0);
-}
-
-.auth-page.show-register .overlay-right {
-  transform: translateX(100%);
-}
-
-
-/* =========================================================
-   OVERLAY TITLE
-========================================================= */
-
-.overlay-panel h1 {
-  margin: 0 0 18px;
-
-  color: #ffffff;
-
-  font-size: 36px;
+  line-height: 1;
 
   font-weight: 800;
 
-  letter-spacing: -0.8px;
-
-  text-shadow:
-    0 4px 15px rgba(15, 23, 42, 0.12);
+  letter-spacing: -0.2px;
 }
 
-.overlay-panel p {
-  max-width: 290px;
+.journey-text p {
+  margin: 0;
 
-  margin: 0 0 30px;
-
-  color:
-    rgba(255, 255, 255, 0.88);
+  color: #60738e;
 
   font-size: 14px;
 
-  line-height: 1.7;
+  line-height: 1.5;
 }
 
 
 /* =========================================================
-   GHOST BUTTON
+   LARGE DESKTOP
 ========================================================= */
 
-.ghost-btn {
-  min-width: 130px;
+@media (max-width: 1350px) {
 
-  height: 46px;
+  .auth-layout {
+    padding: 0 55px;
+  }
 
-  padding: 0 25px;
+  .auth-card {
+    width: 600px;
+    min-width: 600px;
 
-  border:
-    1px solid rgba(255, 255, 255, 0.9);
+    height: calc(100dvh - 42px);
+    max-height: calc(100dvh - 42px);
+  }
 
-  border-radius: 25px;
+  .service-journey {
+    right: 15px;
+    width: 350px;
+  }
 
-  background:
-    rgba(255, 255, 255, 0.08);
+  .journey-title {
+    right: 0;
 
-  color: #ffffff;
+    font-size: 23px;
+  }
 
-  font-size: 13px;
+  .journey-text h3 {
+    font-size: 17px;
+  }
 
-  font-weight: 700;
-
-  cursor: pointer;
-
-  backdrop-filter: blur(8px);
-
-  -webkit-backdrop-filter: blur(8px);
-
-  transition:
-    background 0.25s ease,
-    color 0.25s ease,
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-.ghost-btn:hover {
-  background:
-    rgba(255, 255, 255, 0.96);
-
-  color: var(--primary);
-
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 10px 25px rgba(15, 23, 42, 0.14);
+  .journey-text p {
+    font-size: 13px;
+  }
 }
 
 
 /* =========================================================
-   ERROR
+   TABLET
 ========================================================= */
 
-.auth-error {
-  padding: 10px 12px;
+@media (max-width: 1050px) {
 
-  margin-bottom: 15px;
+  .auth-page {
+    height: 100dvh;
 
-  border-radius: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
 
-  background:
-    rgba(254, 242, 242, 0.9);
+    padding: 20px;
+  }
 
-  border:
-    1px solid rgba(254, 202, 202, 0.9);
+  .auth-layout {
+    width: 100%;
+    height: auto;
 
-  color: var(--danger-text);
+    min-height: 100%;
 
-  text-align: center;
+    justify-content: center;
 
-  font-size: 12px;
+    padding: 0;
 
-  line-height: 1.4;
+    overflow: visible;
+  }
 
-  backdrop-filter: blur(8px);
+  .right-content {
+    display: none;
+  }
 
-  -webkit-backdrop-filter: blur(8px);
-}
+  .auth-card {
+    width: min(620px, 100%);
 
+    min-width: 0;
 
-/* =========================================================
-   MOBILE SWITCH
-========================================================= */
+    height: auto;
+    min-height: 0;
+    max-height: none;
 
-.mobile-auth-switch {
-  display: none;
+    padding: 38px 45px 28px;
+  }
+
+  .auth-background {
+    position: fixed;
+
+    inset: 0;
+
+    background-image:
+      url("/service-bg1.jpeg");
+
+    background-repeat: no-repeat;
+
+    background-position: center center;
+
+    background-size: cover;
+
+    pointer-events: none;
+
+    user-select: none;
+  }
+
+  .account-switch {
+    margin-top: 24px;
+  }
 }
 
 
@@ -698,110 +987,151 @@ body{
    MOBILE
 ========================================================= */
 
-@media (max-width: 768px) {
+@media (max-width: 680px) {
 
   .auth-page {
-    padding: 15px;
-  }
-
-  .auth-wrapper {
     width: 100%;
 
-    max-width: 450px;
+    height: auto;
+    min-height: 100dvh;
 
-    height: 650px;
+    padding: 10px;
 
-    border-radius: 22px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    align-items: flex-start;
   }
 
-  .auth-form {
+  .auth-layout {
     width: 100%;
 
-    padding: 35px 25px;
-
-    flex-direction: column;
-
-    border-radius: 22px;
-
-    background:
-      rgba(255, 255, 255, 0.72);
-  }
-
-  .auth-form form {
-    max-width: 350px;
-  }
-
-
-  /* LOGIN */
-
-  .login-form {
-    transform: translateX(0);
-  }
-
-
-  /* REGISTER */
-
-  .register-form {
-    right: auto;
-
-    left: 0;
-
-    transform: translateX(100%);
-  }
-
-
-  /* REGISTER MODE */
-
-  .auth-page.show-register .login-form {
-    transform: translateX(-100%);
-  }
-
-  .auth-page.show-register .register-form {
-    transform: translateX(0);
-  }
-
-
-  /* HIDE OVERLAY */
-
-  .auth-overlay {
-    display: none;
-  }
-
-
-  /* MOBILE SWITCH */
-
-  .mobile-auth-switch {
-    display: block;
-
-    margin: 18px 0 0;
-
-    text-align: center;
-
-    color: var(--text-muted);
-
-    font-size: 14px;
-  }
-
-  .mobile-auth-switch button {
-    margin-left: 5px;
+    height: auto;
+    min-height: 0;
 
     padding: 0;
 
-    border: none;
+    align-items: flex-start;
 
-    background: transparent;
+    overflow: visible;
+  }
 
-    color: var(--primary);
+  .auth-card {
+    width: 100%;
+
+    height: auto;
+
+    min-height: 0;
+
+    max-height: none;
+
+    padding: 25px 22px 20px;
+
+    border-radius: 20px;
+  }
+
+  .auth-background {
+    position: fixed;
+
+    inset: 0;
+
+    background-position: center center;
+
+    background-size: cover;
+  }
+
+
+  /* -------------------------
+     BRAND
+  ------------------------- */
+
+  .auth-brand {
+    gap: 12px;
+  }
+
+  .brand-logo {
+    width: 55px;
+    height: 55px;
+  }
+
+  .brand-name h2 {
+    font-size: 23px;
+  }
+
+  .brand-name span {
+    font-size: 18px;
+  }
+
+
+  /* -------------------------
+     CONTENT
+  ------------------------- */
+
+  .auth-content {
+    margin-top: 30px;
+  }
+
+  .register-content {
+    margin-top: 23px;
+  }
+
+  .auth-content h1 {
+    font-size: 31px;
+
+    letter-spacing: -0.9px;
+  }
+
+  .auth-description {
+    width: 100%;
 
     font-size: 14px;
 
-    font-weight: 700;
+    line-height: 1.55;
 
-    cursor: pointer;
+    margin-bottom: 21px;
   }
 
-  .mobile-auth-switch button:hover {
-    text-decoration: underline;
+
+  /* -------------------------
+     INPUT
+  ------------------------- */
+
+  .input-wrapper {
+    height: 55px;
+
+    margin-bottom: 13px;
+  }
+
+
+  /* -------------------------
+     BUTTON
+  ------------------------- */
+
+  .auth-button {
+    height: 55px;
+
+    margin-top: 2px;
+
+    font-size: 15px;
+  }
+
+
+  /* -------------------------
+     ACCOUNT SWITCH
+  ------------------------- */
+
+  .account-switch {
+    margin-top: 22px;
+
+    padding-top: 16px;
+
+    flex-wrap: wrap;
+
+    font-size: 13px;
+  }
+
+  .account-switch button {
+    font-size: 13px;
   }
 }
 
@@ -810,42 +1140,107 @@ body{
    SMALL MOBILE
 ========================================================= */
 
-@media (max-width: 420px) {
+@media (max-width: 400px) {
 
   .auth-page {
-    padding: 10px;
+    padding: 8px;
   }
 
-  .auth-wrapper {
-    height: 640px;
+  .auth-card {
+    width: 100%;
 
-    border-radius: 20px;
+    height: auto;
+
+    min-height: 0;
+
+    max-height: none;
+
+    padding: 21px 18px 17px;
+
+    border-radius: 18px;
   }
 
-  .auth-form {
-    padding:
-      30px 20px;
+
+  /* -------------------------
+     BRAND
+  ------------------------- */
+
+  .brand-logo {
+    width: 50px;
+    height: 50px;
   }
 
-  .auth-form h1 {
-    font-size: 29px;
+  .brand-name h2 {
+    font-size: 21px;
   }
 
-  .auth-subtitle {
+  .brand-name span {
+    font-size: 17px;
+  }
+
+
+  /* -------------------------
+     CONTENT
+  ------------------------- */
+
+  .auth-content {
+    margin-top: 26px;
+  }
+
+  .register-content {
+    margin-top: 21px;
+  }
+
+  .auth-content h1 {
+    font-size: 27px;
+
+    letter-spacing: -0.7px;
+  }
+
+  .auth-description {
     font-size: 13px;
 
-    margin-bottom: 24px;
+    line-height: 1.5;
+
+    margin-bottom: 18px;
   }
 
-  .auth-input input {
-    height: 49px;
 
-    font-size: 13px;
+  /* -------------------------
+     INPUT
+  ------------------------- */
+
+  .input-wrapper {
+    height: 52px;
+
+    margin-bottom: 11px;
   }
 
-  .auth-btn {
-    height: 49px;
 
-    font-size: 13px;
+  /* -------------------------
+     BUTTON
+  ------------------------- */
+
+  .auth-button {
+    height: 52px;
+
+    font-size: 14px;
+  }
+
+
+  /* -------------------------
+     ACCOUNT SWITCH
+  ------------------------- */
+
+  .account-switch {
+    margin-top: 19px;
+
+    padding-top: 14px;
+
+    font-size: 12px;
+  }
+
+  .account-switch button {
+    font-size: 12px;
   }
 }

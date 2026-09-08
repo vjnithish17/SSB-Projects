@@ -1,64 +1,63 @@
 /* =========================================================
    SMART SERVICE BOOKING
    TECHNICIAN MY BOOKINGS
-   LIGHT BLUE / WHITE PROFESSIONAL THEME
+   LIGHT ORANGE / WHITE PROFESSIONAL THEME
 ========================================================= */
 
 .technician-my-bookings {
   width: 100%;
-
   min-height: 100%;
 
   box-sizing: border-box;
 
   padding: 28px;
 
-  background:
-    linear-gradient(
-      180deg,
-      #f7faff 0%,
-      #f3f7fc 100%
-    );
+  background: linear-gradient(
+    180deg,
+    #fffdfb 0%,
+    #fff8f4 100%
+  );
 
-  /* PRIMARY */
-  --primary: #2f80ed;
-  --primary-dark: #2563eb;
+  /* ================= PRIMARY ORANGE ================= */
+  --primary: #ff6411;
+  --primary-dark: #e95408;
+  --primary-light: #ff7a32;
+  --primary-soft: #fff1ea;
+  --primary-soft-hover: #ffe8dc;
+  --primary-border: #ffd4c1;
 
-  --primary-soft: #eaf3ff;
-  --primary-soft-hover: #e3efff;
-  --primary-border: #cfe2ff;
+  /* ================= TEXT ================= */
+  --text-dark: #7a3b18;
+  --text-main: #9a4818;
+  --text-muted: #a66a48;
+  --text-light: #c49a82;
 
-  /* TEXT */
-  --text-dark: #172033;
-  --text-main: #334155;
-  --text-muted: #64748b;
-  --text-light: #94a3b8;
-
-  /* CARD */
+  /* ================= CARD ================= */
   --card-bg: #ffffff;
-  --border: #e2e8f0;
-  --border-light: #edf1f5;
+  --border: #f0ddd2;
+  --border-light: #f7ebe5;
 
-  /* SUCCESS */
-  --success: #15803d;
-  --success-bg: #f0fdf4;
-  --success-border: #bbf7d0;
+  /* ================= SUCCESS ================= */
+  --success: #5d9b52;
+  --success-bg: #edf8ea;
+  --success-border: #cce6c5;
 
-  /* WARNING */
-  --warning: #c2410c;
-  --warning-bg: #fff7ed;
-  --warning-border: #fed7aa;
+  /* ================= WARNING ================= */
+  --warning: #d88908;
+  --warning-bg: #fff6df;
+  --warning-border: #f8d99a;
 
-  /* DANGER */
-  --danger: #dc2626;
-  --danger-bg: #fef2f2;
-  --danger-border: #fecaca;
+  /* ================= DANGER ================= */
+  --danger: #d94d4d;
+  --danger-bg: #fff0f0;
+  --danger-border: #f5caca;
 
+  /* ================= SHADOW ================= */
   --shadow-sm:
-    0 4px 14px rgba(15, 23, 42, 0.04);
+    0 4px 14px rgba(122, 59, 24, 0.04);
 
   --shadow-md:
-    0 10px 30px rgba(15, 23, 42, 0.07);
+    0 10px 30px rgba(122, 59, 24, 0.07);
 }
 
 /* =========================================================
@@ -67,9 +66,7 @@
 
 .my-bookings-header {
   display: flex;
-
   align-items: flex-start;
-
   justify-content: space-between;
 
   gap: 24px;
@@ -85,7 +82,6 @@
   color: var(--primary);
 
   font-size: 10px;
-
   font-weight: 800;
 
   letter-spacing: 0.14em;
@@ -97,7 +93,6 @@
   color: var(--text-dark);
 
   font-size: 32px;
-
   line-height: 1.15;
 
   font-weight: 800;
@@ -121,30 +116,25 @@
 
 .my-bookings-refresh {
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
 
   gap: 8px;
 
   min-width: 105px;
-
   height: 40px;
 
   padding: 0 15px;
 
-  border:
-    1px solid var(--primary-border);
+  border: 1px solid var(--primary-border);
 
   border-radius: 10px;
 
-  background: #ffffff;
+  background: var(--card-bg);
 
   color: var(--primary);
 
   font-size: 12px;
-
   font-weight: 700;
 
   cursor: pointer;
@@ -162,7 +152,7 @@
   border-color: var(--primary);
 
   box-shadow:
-    0 6px 18px rgba(47, 128, 237, 0.10);
+    0 6px 18px rgba(255, 100, 17, 0.10);
 
   transform: translateY(-1px);
 }
@@ -181,7 +171,6 @@
 
 .my-bookings-error {
   display: flex;
-
   align-items: center;
 
   gap: 10px;
@@ -190,8 +179,7 @@
 
   padding: 13px 15px;
 
-  border:
-    1px solid var(--danger-border);
+  border: 1px solid var(--danger-border);
 
   border-radius: 10px;
 
@@ -200,7 +188,6 @@
   color: var(--danger);
 
   font-size: 12px;
-
   font-weight: 600;
 }
 
@@ -211,10 +198,9 @@
 .my-bookings-section {
   overflow: hidden;
 
-  background: #ffffff;
+  background: var(--card-bg);
 
-  border:
-    1px solid var(--border);
+  border: 1px solid var(--border);
 
   border-radius: 17px;
 
@@ -227,24 +213,20 @@
 
 .my-bookings-section-head {
   display: flex;
-
   align-items: flex-start;
-
   justify-content: space-between;
 
   gap: 20px;
 
   padding: 22px;
 
-  border-bottom:
-    1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
 
-  background:
-    linear-gradient(
-      180deg,
-      #ffffff,
-      #fbfdff
-    );
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #fffdfb 100%
+  );
 }
 
 .my-bookings-section-head > div > span {
@@ -255,7 +237,6 @@
   color: var(--primary);
 
   font-size: 9px;
-
   font-weight: 800;
 
   letter-spacing: 0.14em;
@@ -267,21 +248,18 @@
   color: var(--text-dark);
 
   font-size: 20px;
-
   font-weight: 800;
 }
 
 .my-bookings-section-head strong {
   display: inline-flex;
-
   align-items: center;
 
   min-height: 31px;
 
   padding: 0 11px;
 
-  border:
-    1px solid var(--primary-border);
+  border: 1px solid var(--primary-border);
 
   border-radius: 999px;
 
@@ -290,7 +268,6 @@
   color: var(--primary);
 
   font-size: 11px;
-
   font-weight: 700;
 
   white-space: nowrap;
@@ -302,9 +279,7 @@
 
 .my-bookings-loading {
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   flex-direction: column;
@@ -346,9 +321,7 @@
 
 .my-bookings-empty {
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   flex-direction: column;
@@ -362,13 +335,10 @@
 
 .my-bookings-empty-icon {
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   width: 62px;
-
   height: 62px;
 
   margin-bottom: 15px;
@@ -377,8 +347,7 @@
 
   background: var(--primary-soft);
 
-  border:
-    1px solid var(--primary-border);
+  border: 1px solid var(--primary-border);
 
   color: var(--primary);
 }
@@ -389,7 +358,6 @@
   color: var(--text-dark);
 
   font-size: 18px;
-
   font-weight: 800;
 }
 
@@ -411,7 +379,6 @@
 
 .my-bookings-list {
   display: flex;
-
   flex-direction: column;
 
   gap: 14px;
@@ -426,12 +393,11 @@
 .my-booking-card {
   padding: 19px;
 
-  border:
-    1px solid var(--border);
+  border: 1px solid var(--border);
 
   border-radius: 14px;
 
-  background: #ffffff;
+  background: var(--card-bg);
 
   transition:
     border-color 0.2s ease,
@@ -443,7 +409,7 @@
   border-color: var(--primary-border);
 
   box-shadow:
-    0 8px 25px rgba(15, 23, 42, 0.06);
+    0 8px 25px rgba(122, 59, 24, 0.06);
 
   transform: translateY(-1px);
 }
@@ -454,22 +420,18 @@
 
 .my-booking-top {
   display: flex;
-
   align-items: flex-start;
-
   justify-content: space-between;
 
   gap: 16px;
 
   padding-bottom: 17px;
 
-  border-bottom:
-    1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
 }
 
 .my-booking-service {
   display: flex;
-
   align-items: center;
 
   gap: 12px;
@@ -479,13 +441,10 @@
 
 .my-booking-icon {
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   width: 44px;
-
   height: 44px;
 
   flex: 0 0 44px;
@@ -494,8 +453,7 @@
 
   background: var(--primary-soft);
 
-  border:
-    1px solid var(--primary-border);
+  border: 1px solid var(--primary-border);
 
   color: var(--primary);
 }
@@ -512,7 +470,6 @@
   color: var(--text-light);
 
   font-size: 9px;
-
   font-weight: 800;
 
   letter-spacing: 0.12em;
@@ -524,7 +481,6 @@
   color: var(--text-dark);
 
   font-size: 15px;
-
   font-weight: 800;
 
   word-break: break-word;
@@ -544,9 +500,7 @@
 
 .my-booking-status {
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
 
   min-height: 30px;
@@ -556,43 +510,45 @@
   border-radius: 999px;
 
   font-size: 10px;
-
   font-weight: 800;
 
   white-space: nowrap;
 }
 
-/* Technician Assigned - Blue */
+/* =========================================================
+   TECHNICIAN ASSIGNED
+========================================================= */
 
 .my-booking-status.technician-assigned {
   background: var(--primary-soft);
 
-  color: var(--primary);
+  color: var(--primary-dark);
 
-  border:
-    1px solid var(--primary-border);
+  border: 1px solid var(--primary-border);
 }
 
-/* Accepted - Green */
+/* =========================================================
+   ACCEPTED
+========================================================= */
 
 .my-booking-status.accepted {
   background: var(--success-bg);
 
   color: var(--success);
 
-  border:
-    1px solid var(--success-border);
+  border: 1px solid var(--success-border);
 }
 
-/* In Progress - Orange */
+/* =========================================================
+   IN PROGRESS
+========================================================= */
 
 .my-booking-status.in-progress {
   background: var(--warning-bg);
 
   color: var(--warning);
 
-  border:
-    1px solid var(--warning-border);
+  border: 1px solid var(--warning-border);
 }
 
 /* =========================================================
@@ -613,8 +569,7 @@
 
   padding: 0 15px;
 
-  border-right:
-    1px solid var(--border-light);
+  border-right: 1px solid var(--border-light);
 }
 
 .my-booking-details > div:first-child {
@@ -635,7 +590,6 @@
   color: var(--text-light);
 
   font-size: 9px;
-
   font-weight: 800;
 
   letter-spacing: 0.1em;
@@ -643,7 +597,6 @@
 
 .my-booking-details strong {
   display: flex;
-
   align-items: flex-start;
 
   gap: 6px;
@@ -651,7 +604,6 @@
   color: var(--text-main);
 
   font-size: 11px;
-
   font-weight: 700;
 
   line-height: 1.45;
@@ -682,12 +634,11 @@
 
   padding: 13px 14px;
 
-  border:
-    1px solid #dbeafe;
+  border: 1px solid var(--primary-border);
 
   border-radius: 10px;
 
-  background: #f8fbff;
+  background: var(--primary-soft);
 }
 
 .my-booking-notes span {
@@ -698,7 +649,6 @@
   color: var(--primary);
 
   font-size: 9px;
-
   font-weight: 800;
 
   letter-spacing: 0.1em;
@@ -709,7 +659,7 @@
 .my-booking-notes p {
   margin: 0;
 
-  color: var(--text-main);
+  color: var(--text-dark);
 
   font-size: 11px;
 
@@ -722,9 +672,7 @@
 
 .my-booking-actions {
   display: flex;
-
   align-items: center;
-
   justify-content: flex-end;
 
   gap: 9px;
@@ -733,8 +681,7 @@
 
   padding-top: 15px;
 
-  border-top:
-    1px solid var(--border-light);
+  border-top: 1px solid var(--border-light);
 }
 
 .my-accept-btn,
@@ -742,9 +689,7 @@
 .my-start-btn,
 .my-complete-btn {
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
 
   gap: 7px;
@@ -756,7 +701,6 @@
   border-radius: 9px;
 
   font-size: 11px;
-
   font-weight: 700;
 
   cursor: pointer;
@@ -764,7 +708,8 @@
   transition:
     transform 0.18s ease,
     box-shadow 0.18s ease,
-    background 0.18s ease;
+    background 0.18s ease,
+    border-color 0.18s ease;
 }
 
 /* =========================================================
@@ -772,8 +717,7 @@
 ========================================================= */
 
 .my-accept-btn {
-  border:
-    1px solid var(--success-border);
+  border: 1px solid var(--success-border);
 
   background: var(--success-bg);
 
@@ -781,12 +725,12 @@
 }
 
 .my-accept-btn:hover:not(:disabled) {
-  background: #e8f9ee;
+  background: #e6f5e1;
 
   transform: translateY(-1px);
 
   box-shadow:
-    0 5px 14px rgba(21, 128, 61, 0.10);
+    0 5px 14px rgba(93, 155, 82, 0.10);
 }
 
 /* =========================================================
@@ -794,8 +738,7 @@
 ========================================================= */
 
 .my-reject-btn {
-  border:
-    1px solid var(--danger-border);
+  border: 1px solid var(--danger-border);
 
   background: var(--danger-bg);
 
@@ -803,12 +746,12 @@
 }
 
 .my-reject-btn:hover:not(:disabled) {
-  background: #feecec;
+  background: #feeaea;
 
   transform: translateY(-1px);
 
   box-shadow:
-    0 5px 14px rgba(220, 38, 38, 0.10);
+    0 5px 14px rgba(217, 77, 77, 0.10);
 }
 
 /* =========================================================
@@ -823,7 +766,7 @@
   color: #ffffff;
 
   box-shadow:
-    0 6px 15px rgba(47, 128, 237, 0.18);
+    0 6px 15px rgba(255, 100, 17, 0.18);
 }
 
 .my-start-btn:hover:not(:disabled) {
@@ -832,7 +775,7 @@
   transform: translateY(-1px);
 
   box-shadow:
-    0 9px 20px rgba(47, 128, 237, 0.24);
+    0 9px 20px rgba(255, 100, 17, 0.24);
 }
 
 /* =========================================================
@@ -847,16 +790,16 @@
   color: #ffffff;
 
   box-shadow:
-    0 6px 15px rgba(21, 128, 61, 0.16);
+    0 6px 15px rgba(93, 155, 82, 0.16);
 }
 
 .my-complete-btn:hover:not(:disabled) {
-  background: #166534;
+  background: #4f8a45;
 
   transform: translateY(-1px);
 
   box-shadow:
-    0 9px 20px rgba(21, 128, 61, 0.22);
+    0 9px 20px rgba(93, 155, 82, 0.22);
 }
 
 /* =========================================================
@@ -882,9 +825,7 @@
 
 .booking-progress-action {
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 
   width: 100%;
@@ -895,13 +836,11 @@
 .booking-accepted-text,
 .booking-progress-text {
   display: inline-flex;
-
   align-items: center;
 
   gap: 6px;
 
   font-size: 11px;
-
   font-weight: 700;
 }
 
@@ -911,6 +850,47 @@
 
 .booking-progress-text {
   color: var(--warning);
+}
+
+/* =========================================================
+   SERVICE HISTORY
+========================================================= */
+
+.booking-history-section {
+  margin-top: 28px;
+}
+
+.booking-history-footer {
+  margin-top: 18px;
+
+  padding-top: 14px;
+
+  border-top: 1px solid var(--border-light);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+}
+
+.booking-history-footer span {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  color: var(--text-muted);
+}
+
+.booking-history-footer strong {
+  font-size: 12px;
+  font-weight: 600;
+
+  color: var(--primary);
 }
 
 /* =========================================================
@@ -937,7 +917,7 @@
 }
 
 /* =========================================================
-   MOBILE
+   TABLET / MOBILE
 ========================================================= */
 
 @media (max-width: 768px) {
@@ -1029,6 +1009,12 @@
   .my-reject-btn {
     flex: 1;
   }
+
+  .booking-history-footer {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
 }
 
 /* =========================================================
@@ -1077,7 +1063,6 @@
 
   .my-booking-icon {
     width: 40px;
-
     height: 40px;
 
     flex-basis: 40px;
@@ -1092,46 +1077,5 @@
   .my-start-btn,
   .my-complete-btn {
     width: 100%;
-  }
-}
-/* ==========================================
-   SERVICE HISTORY
-========================================== */
-
-.booking-history-section {
-  margin-top: 28px;
-}
-
-.booking-history-footer {
-  margin-top: 18px;
-  padding-top: 14px;
-  border-top: 1px solid #e2e8f0;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.booking-history-footer span {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-
-  font-size: 12px;
-  font-weight: 600;
-  color: #64748b;
-}
-
-.booking-history-footer strong {
-  font-size: 12px;
-  font-weight: 600;
-  color: #2563eb;
-}
-
-@media (max-width: 768px) {
-  .booking-history-footer {
-    align-items: flex-start;
-    flex-direction: column;
   }
 }
