@@ -793,6 +793,14 @@
     );
 }
 
+/* =========================================================
+   MOBILE SIDEBAR + RESPONSIVE
+========================================================= */
+
+.mobile-menu-btn {
+  display: none;
+}
+
 
 /* =========================================================
    MOBILE
@@ -800,33 +808,96 @@
 
 @media (max-width: 700px) {
 
+  /* -----------------------------------------
+     MAIN LAYOUT
+  ----------------------------------------- */
+
   .app-layout {
-    --sidebar-width: 76px;
+    --sidebar-width: 0px;
   }
 
   .app-layout.sidebar-collapsed {
-    --sidebar-width: 68px;
+    --sidebar-width: 0px;
   }
 
   .app-main {
-    margin-left:
-      var(--sidebar-width);
+    margin-left: 0 !important;
+    width: 100%;
+    min-width: 0;
   }
+
+
+  /* -----------------------------------------
+     TOPBAR
+  ----------------------------------------- */
 
   .app-topbar {
     height: 64px;
-
     padding: 0 15px;
+  }
+
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .mobile-menu-btn {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    background: #ffffff;
+    color: var(--text-dark);
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+
+    transition:
+      background 0.2s ease,
+      color 0.2s ease,
+      border-color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .mobile-menu-btn:hover {
+    background: var(--primary-soft);
+    border-color: var(--primary-border);
+    color: var(--primary);
+  }
+
+  .mobile-menu-btn:active {
+    transform: scale(0.95);
   }
 
   .topbar-title {
     display: none;
   }
 
+
+  /* -----------------------------------------
+     CONTENT
+  ----------------------------------------- */
+
   .app-content {
-    min-height:
-      calc(100vh - 64px);
+    width: 100%;
+    min-height: calc(100vh - 64px);
   }
+
+
+  /* -----------------------------------------
+     USER INFO
+  ----------------------------------------- */
 
   .topbar-user-info {
     display: none;
@@ -836,11 +907,119 @@
     height: 30px;
   }
 
+
+  /* -----------------------------------------
+     SIDEBAR DRAWER
+  ----------------------------------------- */
+
+  .app-layout .app-sidebar,
+  .app-layout .app-sidebar.collapsed {
+
+    width: 225px !important;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    transform: translateX(-105%);
+
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+
+    z-index: 1100;
+
+    padding: 18px 12px !important;
+
+    box-shadow: none;
+  }
+
+
+  /* -----------------------------------------
+     SIDEBAR OPEN
+  ----------------------------------------- */
+
+  .app-layout.mobile-menu-open .app-sidebar {
+
+    transform: translateX(0);
+
+    box-shadow:
+      12px 0 35px rgba(15, 23, 42, 0.16);
+  }
+
+
+  /* -----------------------------------------
+     MOBILE OVERLAY
+  ----------------------------------------- */
+
+  .mobile-sidebar-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+      rgba(15, 23, 42, 0.38);
+
+    z-index: 1050;
+
+    animation:
+      mobileOverlayIn 0.25s ease;
+  }
+
+  @keyframes mobileOverlayIn {
+
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+
+  /* -----------------------------------------
+     NOTIFICATION
+  ----------------------------------------- */
+
   .notification-dropdown {
+
     width: 340px;
 
     max-width:
       calc(100vw - 24px);
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 450px) {
+
+  .app-layout .app-sidebar,
+  .app-layout .app-sidebar.collapsed {
+
+    width: 210px !important;
+  }
+
+  .app-topbar {
+    padding: 0 12px;
+  }
+
+  .mobile-menu-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .notification-dropdown {
+
+    width:
+      calc(100vw - 20px);
+
+    max-width: none;
   }
 }
 
@@ -852,6 +1031,7 @@
 @media (max-width: 600px) {
 
   .notification-dropdown {
+
     position: fixed;
 
     top: 64px;
@@ -862,13 +1042,13 @@
     max-width:
       calc(100vw - 24px);
   }
-
 }
 
 
 @media (max-width: 420px) {
 
   .notification-dropdown {
+
     top: 62px;
 
     right: 10px;
@@ -895,16 +1075,13 @@
   .topbar-avatar {
     width: 36px;
     height: 36px;
-
     min-width: 36px;
   }
 
   .topbar-user {
     gap: 9px;
   }
-
 }
-
 
 /* =========================================================
    LOGOUT CONFIRMATION MODAL

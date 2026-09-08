@@ -7,6 +7,7 @@ import {
   X,
   AlertTriangle,
   CheckCheck,
+  Menu,
 } from "lucide-react";
 
 import { useAuth } from "../context/AuthContext";
@@ -18,16 +19,24 @@ const Layout = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
+  // ==========================================
+  // SIDEBAR STATES
+  // ==========================================
+
   const [sidebarCollapsed, setSidebarCollapsed] =
     useState(false);
 
+  const [mobileSidebarOpen, setMobileSidebarOpen] =
+    useState(false);
+
+  const [isMobile, setIsMobile] =
+    useState(window.innerWidth <= 700);
+
+  // ==========================================
+  // NOTIFICATION STATES
+  // ==========================================
+
   const [showNotifications, setShowNotifications] =
-    useState(false);
-
-  const [showLogoutModal, setShowLogoutModal] =
-    useState(false);
-
-  const [logoutLoading, setLogoutLoading] =
     useState(false);
 
   const [notifications, setNotifications] =
@@ -40,11 +49,58 @@ const Layout = () => {
     useState(false);
 
   // ==========================================
+  // LOGOUT STATES
+  // ==========================================
+
+  const [showLogoutModal, setShowLogoutModal] =
+    useState(false);
+
+  const [logoutLoading, setLogoutLoading] =
+    useState(false);
+
+  // ==========================================
+  // RESPONSIVE SCREEN CHECK
+  // ==========================================
+
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth <= 700;
+
+      setIsMobile(mobile);
+
+      // Desktop-ku pona mobile sidebar close
+      if (!mobile) {
+        setMobileSidebarOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // ==========================================
   // SIDEBAR TOGGLE
   // ==========================================
 
   const toggleSidebar = () => {
-    setSidebarCollapsed((prev) => !prev);
+    if (isMobile) {
+      setMobileSidebarOpen((prev) => !prev);
+    } else {
+      setSidebarCollapsed((prev) => !prev);
+    }
+  };
+
+  // ==========================================
+  // CLOSE MOBILE SIDEBAR
+  // ==========================================
+
+  const closeMobileSidebar = () => {
+    if (isMobile) {
+      setMobileSidebarOpen(false);
+    }
   };
 
   // ==========================================
@@ -53,6 +109,9 @@ const Layout = () => {
 
   const handleLogoutClick = () => {
     setShowLogoutModal(true);
+
+    // Mobile-la logout click aana sidebar close
+    setMobileSidebarOpen(false);
   };
 
   // ==========================================
@@ -85,35 +144,40 @@ const Layout = () => {
   // FETCH NOTIFICATIONS
   // ==========================================
 
- const fetchNotifications = async () => {
-  try {
-    setNotificationLoading(true);
+  const fetchNotifications = async () => {
+    try {
+      setNotificationLoading(true);
 
-    const response = await api.get("/notifications");
+      const response = await api.get("/notifications");
 
-    console.log("NOTIFICATION RESPONSE:", response.data);
-    console.log("CURRENT USER:", user);
-    console.log(
-      "NOTIFICATIONS:",
-      response.data?.notifications
-    );
+      console.log(
+        "NOTIFICATION RESPONSE:",
+        response.data
+      );
 
-    setNotifications(
-      response.data?.notifications || []
-    );
+      console.log("CURRENT USER:", user);
 
-    setUnreadCount(
-      Number(response.data?.unreadCount || 0)
-    );
-  } catch (error) {
-    console.log(
-      "Notification Error:",
-      error.response?.data || error.message
-    );
-  } finally {
-    setNotificationLoading(false);
-  }
-};
+      console.log(
+        "NOTIFICATIONS:",
+        response.data?.notifications
+      );
+
+      setNotifications(
+        response.data?.notifications || []
+      );
+
+      setUnreadCount(
+        Number(response.data?.unreadCount || 0)
+      );
+    } catch (error) {
+      console.log(
+        "Notification Error:",
+        error.response?.data || error.message
+      );
+    } finally {
+      setNotificationLoading(false);
+    }
+  };
 
   // ==========================================
   // LOAD NOTIFICATIONS
@@ -145,7 +209,10 @@ const Layout = () => {
         setNotifications((prev) =>
           prev.map((item) =>
             item._id === notification._id
-              ? { ...item, isRead: true }
+              ? {
+                  ...item,
+                  isRead: true,
+                }
               : item
           )
         );
@@ -155,7 +222,10 @@ const Layout = () => {
         );
       }
 
-      // Booking notification click
+      // ========================================
+      // BOOKING NOTIFICATION CLICK
+      // ========================================
+
       if (notification.booking?._id) {
         if (user.role === "admin") {
           navigate("/admin/bookings");
@@ -202,7 +272,7 @@ const Layout = () => {
   };
 
   // ==========================================
-  // FORMAT TIME
+  // FORMAT NOTIFICATION TIME
   // ==========================================
 
   const formatNotificationTime = (date) => {
@@ -244,7 +314,9 @@ const Layout = () => {
     );
 
     if (days < 7) {
-      return `${days} day${days > 1 ? "s" : ""} ago`;
+      return `${days} day${
+        days > 1 ? "s" : ""
+      } ago`;
     }
 
     return notificationDate.toLocaleDateString(
@@ -281,17 +353,25 @@ const Layout = () => {
     return <Bell size={16} />;
   };
 
+  // ==========================================
+  // NO USER
+  // ==========================================
+
   if (!user) {
     return <Outlet />;
   }
 
+  // ==========================================
+  // MAIN LAYOUT
+  // ==========================================
+
   return (
     <div
-      className={`app-layout ${
-        sidebarCollapsed
-          ? "sidebar-collapsed"
-          : ""
-      }`}
+      className={`
+        app-layout
+        ${sidebarCollapsed ? "sidebar-collapsed" : ""}
+        ${mobileSidebarOpen ? "mobile-menu-open" : ""}
+      `}
     >
 
       {/* ======================================
@@ -299,10 +379,25 @@ const Layout = () => {
       ====================================== */}
 
       <Sidebar
-        collapsed={sidebarCollapsed}
+        collapsed={
+          isMobile
+            ? false
+            : sidebarCollapsed
+        }
         onToggle={toggleSidebar}
         onLogout={handleLogoutClick}
       />
+
+      {/* ======================================
+          MOBILE OVERLAY
+      ====================================== */}
+
+      {isMobile && mobileSidebarOpen && (
+        <div
+          className="mobile-sidebar-overlay"
+          onClick={closeMobileSidebar}
+        />
+      )}
 
       {/* ======================================
           MAIN
@@ -317,6 +412,25 @@ const Layout = () => {
         <header className="app-topbar">
 
           <div className="topbar-left">
+
+            {/* MOBILE MENU BUTTON */}
+
+            <button
+              type="button"
+              className="mobile-menu-btn"
+              onClick={toggleSidebar}
+              aria-label={
+                mobileSidebarOpen
+                  ? "Close menu"
+                  : "Open menu"
+              }
+            >
+              {mobileSidebarOpen ? (
+                <X size={23} />
+              ) : (
+                <Menu size={23} />
+              )}
+            </button>
 
             <span className="topbar-title">
               Smart Service Booking
@@ -392,11 +506,13 @@ const Layout = () => {
                   {notificationLoading ? (
 
                     <div className="notification-empty">
+
                       <Bell size={24} />
 
                       <p>
                         Loading notifications...
                       </p>
+
                     </div>
 
                   ) : notifications.length > 0 ? (
@@ -411,11 +527,14 @@ const Layout = () => {
                             key={
                               notification._id
                             }
-                            className={`notification-item ${
-                              notification.isRead
-                                ? "notification-read"
-                                : "notification-unread"
-                            }`}
+                            className={`
+                              notification-item
+                              ${
+                                notification.isRead
+                                  ? "notification-read"
+                                  : "notification-unread"
+                              }
+                            `}
                             onClick={() =>
                               handleMarkAsRead(
                                 notification
@@ -440,7 +559,7 @@ const Layout = () => {
                                 </strong>
 
                                 {!notification.isRead && (
-                                  <span className="notification-unread-dot"></span>
+                                  <span className="notification-unread-dot" />
                                 )}
 
                               </div>
@@ -460,7 +579,6 @@ const Layout = () => {
                             </div>
 
                           </button>
-
                         )
                       )}
 
@@ -477,7 +595,6 @@ const Layout = () => {
                       </p>
 
                     </div>
-
                   )}
 
                 </div>
@@ -489,7 +606,7 @@ const Layout = () => {
                 DIVIDER
             =============================== */}
 
-            <div className="topbar-divider"></div>
+            <div className="topbar-divider" />
 
             {/* ===============================
                 AVATAR
@@ -513,7 +630,7 @@ const Layout = () => {
 
               <small>
 
-                <span className="online-dot"></span>
+                <span className="online-dot" />
 
                 {user.role}
 
@@ -619,7 +736,6 @@ const Layout = () => {
           </div>
 
         </div>
-
       )}
 
     </div>
