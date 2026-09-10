@@ -84,12 +84,17 @@
   box-sizing: border-box;
 
   background:
-    linear-gradient(
-      180deg,
-      #fffdfb 0%,
-      #fff8f4 100%
-    );
-
+    radial-gradient(
+      600px circle at 0% 100%,
+      #fc9f538c,
+      transparent 100%
+    ),
+    radial-gradient(
+      500px circle at 100% 0%,
+      #fc9f538c,
+      transparent 100%
+    ),
+    #ffe187a4;
   color: var(--text-main);
 }
 
@@ -1474,4 +1479,225 @@
   font-size: 14px;
 
   font-weight: 600;
+}
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.bokking-pagination {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  padding: 17px 24px;
+
+  border-top: 1px solid var(--border-light);
+
+  background: #fffaf7;
+}
+
+
+/* =========================================================
+   PAGINATION PAGES
+========================================================= */
+
+.pagination-pages {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+}
+
+
+/* =========================================================
+   PAGE BUTTON
+========================================================= */
+
+.pagination-pages button {
+  width: 32px;
+  height: 32px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid var(--border);
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+/* =========================================================
+   PAGE BUTTON HOVER
+========================================================= */
+
+.pagination-pages button:hover:not(.active) {
+  background: var(--primary-soft);
+
+  color: var(--primary);
+
+  border-color: var(--primary-border);
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   ACTIVE PAGE
+========================================================= */
+
+.pagination-pages button.active {
+  background: var(--primary);
+
+  border-color: var(--primary);
+
+  color: #ffffff;
+
+  box-shadow:
+    0 4px 10px rgba(255, 100, 17, 0.18);
+
+  cursor: default;
+}
+
+
+/* =========================================================
+   PREVIOUS / NEXT
+========================================================= */
+
+.pagination-nav {
+  min-height: 32px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  padding: 0 12px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: var(--text-dark);
+
+  font-size: 10px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+/* =========================================================
+   PREVIOUS / NEXT HOVER
+========================================================= */
+
+.pagination-nav:hover:not(:disabled) {
+  background: var(--primary-soft);
+
+  color: var(--primary);
+
+  border-color: var(--primary-border);
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 4px 10px rgba(255, 100, 17, 0.08);
+}
+
+
+/* =========================================================
+   DISABLED
+========================================================= */
+
+.pagination-nav:disabled {
+  opacity: 0.45;
+
+  background: #faf7f5;
+
+  color: var(--text-light);
+
+  border-color: var(--border-light);
+
+  cursor: not-allowed;
+
+  transform: none;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   PAGINATION FOCUS
+========================================================= */
+
+.pagination-pages button:focus-visible,
+.pagination-nav:focus-visible {
+  outline: 2px solid var(--primary-border);
+
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   MOBILE PAGINATION
+========================================================= */
+
+@media (max-width: 650px) {
+
+  .payments-pagination {
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    padding: 15px;
+
+    gap: 12px;
+  }
+
+  .pagination-pages {
+    order: 1;
+
+    width: 100%;
+  }
+
+  .pagination-nav {
+    flex: 1;
+
+    min-width: 110px;
+  }
 }

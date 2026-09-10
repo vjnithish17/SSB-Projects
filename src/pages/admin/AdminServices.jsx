@@ -7,11 +7,15 @@ import {
   X,
   Loader2,
   Clock3,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 import api from "../../Services/api";
 import { useToast } from "../../context/ToastContext";
 import "./css/adminServices.css";
+
+const SERVICES_PER_PAGE = 5;
 
 const Services = () => {
   const { showToast } = useToast();
@@ -23,6 +27,8 @@ const Services = () => {
 
   const [showForm, setShowForm] = useState(false);
   const [editId, setEditId] = useState(null);
+
+  const [currentPage, setCurrentPage] = useState(1);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -40,10 +46,7 @@ const Services = () => {
   const formatDuration = (minutes) => {
     const totalMinutes = Number(minutes);
 
-    if (
-      !Number.isFinite(totalMinutes) ||
-      totalMinutes <= 0
-    ) {
+    if (!Number.isFinite(totalMinutes) || totalMinutes <= 0) {
       return "-";
     }
 
@@ -85,6 +88,7 @@ const Services = () => {
       const res = await api.get("/services");
 
       setServices(res.data.services || []);
+      setCurrentPage(1);
     } catch (err) {
       console.error(
         "FETCH SERVICES ERROR:",
@@ -92,8 +96,7 @@ const Services = () => {
       );
 
       showToast(
-        err.response?.data?.message ||
-          "Unable to fetch services",
+        err.response?.data?.message || "Unable to fetch services",
         "error"
       );
     } finally {
@@ -104,6 +107,35 @@ const Services = () => {
   useEffect(() => {
     fetchServices();
   }, []);
+
+  /* =========================================================
+     PAGINATION
+  ========================================================= */
+
+  const totalServices = services.length;
+
+  const totalPages = Math.max(
+    1,
+    Math.ceil(totalServices / SERVICES_PER_PAGE)
+  );
+
+  const startIndex = (currentPage - 1) * SERVICES_PER_PAGE;
+
+  const currentServices = services.slice(
+    startIndex,
+    startIndex + SERVICES_PER_PAGE
+  );
+
+  const handlePageChange = (page) => {
+    if (page < 1 || page > totalPages) return;
+
+    setCurrentPage(page);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   /* =========================================================
      INPUT CHANGE
@@ -172,10 +204,7 @@ const Services = () => {
       return "Category is required";
     }
 
-    if (
-      formData.price === "" ||
-      Number(formData.price) < 0
-    ) {
+    if (formData.price === "" || Number(formData.price) < 0) {
       return "Enter a valid price";
     }
 
@@ -189,24 +218,15 @@ const Services = () => {
         ? 0
         : Number(formData.durationMinutes);
 
-    if (
-      !Number.isInteger(hours) ||
-      hours < 0 ||
-      hours > 23
-    ) {
+    if (!Number.isInteger(hours) || hours < 0 || hours > 23) {
       return "Hours must be between 0 and 23";
     }
 
-    if (
-      !Number.isInteger(minutes) ||
-      minutes < 0 ||
-      minutes > 59
-    ) {
+    if (!Number.isInteger(minutes) || minutes < 0 || minutes > 59) {
       return "Minutes must be between 0 and 59";
     }
 
-    const totalDuration =
-      hours * 60 + minutes;
+    const totalDuration = hours * 60 + minutes;
 
     if (totalDuration < 1) {
       return "Duration must be at least 1 minute";
@@ -246,8 +266,7 @@ const Services = () => {
           ? 0
           : Number(formData.durationMinutes);
 
-      const totalDuration =
-        hours * 60 + minutes;
+      const totalDuration = hours * 60 + minutes;
 
       const payload = {
         name: formData.name.trim(),
@@ -258,25 +277,13 @@ const Services = () => {
       };
 
       if (editId) {
-        await api.put(
-          `/services/${editId}`,
-          payload
-        );
+        await api.put(`/services/${editId}`, payload);
 
-        showToast(
-          "Service updated successfully",
-          "success"
-        );
+        showToast("Service updated successfully", "success");
       } else {
-        await api.post(
-          "/services",
-          payload
-        );
+        await api.post("/services", payload);
 
-        showToast(
-          "Service added successfully",
-          "success"
-        );
+        showToast("Service added successfully", "success");
       }
 
       resetForm();
@@ -289,8 +296,7 @@ const Services = () => {
       );
 
       showToast(
-        err.response?.data?.message ||
-          "Unable to save service",
+        err.response?.data?.message || "Unable to save service",
         "error"
       );
     } finally {
@@ -303,9 +309,7 @@ const Services = () => {
   ========================================================= */
 
   const handleEdit = (service) => {
-    const durationParts = getDurationParts(
-      service.duration
-    );
+    const durationParts = getDurationParts(service.duration);
 
     setFormData({
       name: service.name || "",
@@ -313,9 +317,7 @@ const Services = () => {
       category: service.category || "",
       price: service.price ?? "",
       durationHours:
-        durationParts.hours > 0
-          ? String(durationParts.hours)
-          : "",
+        durationParts.hours > 0 ? String(durationParts.hours) : "",
       durationMinutes:
         durationParts.minutes > 0
           ? String(durationParts.minutes)
@@ -345,10 +347,7 @@ const Services = () => {
     try {
       await api.delete(`/services/${id}`);
 
-      showToast(
-        "Service deleted successfully",
-        "success"
-      );
+      showToast("Service deleted successfully", "success");
 
       await fetchServices();
     } catch (err) {
@@ -358,8 +357,7 @@ const Services = () => {
       );
 
       showToast(
-        err.response?.data?.message ||
-          "Unable to delete service",
+        err.response?.data?.message || "Unable to delete service",
         "error"
       );
     }
@@ -406,15 +404,11 @@ const Services = () => {
           <div className="form-title">
             <div>
               <span>
-                {editId
-                  ? "UPDATE SERVICE"
-                  : "NEW SERVICE"}
+                {editId ? "UPDATE SERVICE" : "NEW SERVICE"}
               </span>
 
               <h2>
-                {editId
-                  ? "Edit Service"
-                  : "Add New Service"}
+                {editId ? "Edit Service" : "Add New Service"}
               </h2>
             </div>
 
@@ -430,16 +424,12 @@ const Services = () => {
 
           <form onSubmit={handleSubmit}>
 
-            {/* FORM GRID */}
-
             <div className="form-grid">
 
               {/* SERVICE NAME */}
 
               <div className="form-group">
-                <label>
-                  Service Name
-                </label>
+                <label>Service Name</label>
 
                 <input
                   type="text"
@@ -455,9 +445,7 @@ const Services = () => {
               {/* CATEGORY */}
 
               <div className="form-group">
-                <label>
-                  Category
-                </label>
+                <label>Category</label>
 
                 <input
                   type="text"
@@ -473,9 +461,7 @@ const Services = () => {
               {/* PRICE */}
 
               <div className="form-group">
-                <label>
-                  Price (₹)
-                </label>
+                <label>Price (₹)</label>
 
                 <input
                   type="number"
@@ -492,9 +478,7 @@ const Services = () => {
               {/* DURATION */}
 
               <div className="form-group duration-group">
-                <label>
-                  Duration
-                </label>
+                <label>Duration</label>
 
                 <div className="duration-inputs">
 
@@ -505,9 +489,7 @@ const Services = () => {
                       type="number"
                       name="durationHours"
                       placeholder="0"
-                      value={
-                        formData.durationHours
-                      }
+                      value={formData.durationHours}
                       onChange={handleChange}
                       min="0"
                       max="23"
@@ -524,9 +506,7 @@ const Services = () => {
                       type="number"
                       name="durationMinutes"
                       placeholder="0"
-                      value={
-                        formData.durationMinutes
-                      }
+                      value={formData.durationMinutes}
                       onChange={handleChange}
                       min="0"
                       max="59"
@@ -538,9 +518,7 @@ const Services = () => {
 
                 </div>
 
-                <small>
-                  Example: 1 hr 30 min
-                </small>
+                <small>Example: 1 hr 30 min</small>
               </div>
 
             </div>
@@ -549,9 +527,7 @@ const Services = () => {
 
             <div className="form-group">
 
-              <label>
-                Description
-              </label>
+              <label>Description</label>
 
               <textarea
                 name="description"
@@ -616,9 +592,7 @@ const Services = () => {
 
         <div className="card-heading">
           <div>
-            <h2>
-              All Services
-            </h2>
+            <h2>All Services</h2>
 
             <p>
               View and manage available platform services.
@@ -626,10 +600,8 @@ const Services = () => {
           </div>
 
           <span>
-            {services.length}{" "}
-            {services.length === 1
-              ? "Service"
-              : "Services"}
+            {totalServices}{" "}
+            {totalServices === 1 ? "Service" : "Services"}
           </span>
         </div>
 
@@ -642,9 +614,7 @@ const Services = () => {
 
             <div className="service-spinner"></div>
 
-            <p>
-              Loading services...
-            </p>
+            <p>Loading services...</p>
 
           </div>
         ) : services.length === 0 ? (
@@ -659,9 +629,7 @@ const Services = () => {
               <Wrench size={25} />
             </div>
 
-            <h3>
-              No Services Found
-            </h3>
+            <h3>No Services Found</h3>
 
             <p>
               Add your first service to get started.
@@ -683,123 +651,173 @@ const Services = () => {
              TABLE
           ================================================= */
 
-          <div className="services-table-wrapper">
+          <>
+            <div className="services-table-wrapper">
 
-            <table className="services-table">
+              <table className="services-table">
 
-              <thead>
-                <tr>
-                  <th>Service</th>
-                  <th>Category</th>
-                  <th>Price</th>
-                  <th>Duration</th>
-                  <th>Provider</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-
-              <tbody>
-
-                {services.map((service) => (
-                  <tr key={service._id}>
-
-                    {/* SERVICE */}
-
-                    <td>
-                      <div className="service-name">
-
-                        <div className="service-icon">
-                          <Wrench size={18} />
-                        </div>
-
-                        <div>
-                          <strong>
-                            {service.name}
-                          </strong>
-
-                          <small>
-                            {service.description ||
-                              "No description"}
-                          </small>
-                        </div>
-
-                      </div>
-                    </td>
-
-                    {/* CATEGORY */}
-
-                    <td>
-                      <span className="category-badge">
-                        {service.category}
-                      </span>
-                    </td>
-
-                    {/* PRICE */}
-
-                    <td>
-                      <strong className="service-price">
-                        ₹
-                        {Number(
-                          service.price || 0
-                        ).toLocaleString("en-IN")}
-                      </strong>
-                    </td>
-
-                    {/* DURATION */}
-
-                    <td>
-                      <span className="service-duration">
-                        <Clock3 size={13} />
-                        {formatDuration(
-                          service.duration
-                        )}
-                      </span>
-                    </td>
-
-                    {/* PROVIDER */}
-
-                    <td>
-                      {service.provider?.name ||
-                        "Admin"}
-                    </td>
-
-                    {/* ACTION */}
-
-                    <td>
-                      <div className="action-buttons">
-
-                        <button
-                          className="edit-btn"
-                          onClick={() =>
-                            handleEdit(service)
-                          }
-                        >
-                          <Pencil size={13} />
-                          Edit
-                        </button>
-
-                        <button
-                          className="delete-btn"
-                          onClick={() =>
-                            handleDelete(
-                              service._id
-                            )
-                          }
-                        >
-                          <Trash2 size={13} />
-                          Delete
-                        </button>
-
-                      </div>
-                    </td>
-
+                <thead>
+                  <tr>
+                    <th>Service</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Duration</th>
+                    <th>Provider</th>
+                    <th>Action</th>
                   </tr>
-                ))}
+                </thead>
 
-              </tbody>
+                <tbody>
 
-            </table>
-          </div>
+                  {currentServices.map((service) => (
+                    <tr key={service._id}>
+
+                      {/* SERVICE */}
+
+                      <td>
+                        <div className="service-name">
+
+                          <div className="service-icon">
+                            <Wrench size={18} />
+                          </div>
+
+                          <div>
+                            <strong>{service.name}</strong>
+
+                            <small>
+                              {service.description ||
+                                "No description"}
+                            </small>
+                          </div>
+
+                        </div>
+                      </td>
+
+                      {/* CATEGORY */}
+
+                      <td>
+                        <span className="category-badge">
+                          {service.category}
+                        </span>
+                      </td>
+
+                      {/* PRICE */}
+
+                      <td>
+                        <strong className="service-price">
+                          ₹
+                          {Number(
+                            service.price || 0
+                          ).toLocaleString("en-IN")}
+                        </strong>
+                      </td>
+
+                      {/* DURATION */}
+
+                      <td>
+                        <span className="service-duration">
+                          <Clock3 size={13} />
+                          {formatDuration(service.duration)}
+                        </span>
+                      </td>
+
+                      {/* PROVIDER */}
+
+                      <td>
+                        {service.provider?.name || "Admin"}
+                      </td>
+
+                      {/* ACTION */}
+
+                      <td>
+                        <div className="action-buttons">
+
+                          <button
+                            className="edit-btn"
+                            onClick={() => handleEdit(service)}
+                          >
+                            <Pencil size={13} />
+                            Edit
+                          </button>
+
+                          <button
+                            className="delete-btn"
+                            onClick={() =>
+                              handleDelete(service._id)
+                            }
+                          >
+                            <Trash2 size={13} />
+                            Delete
+                          </button>
+
+                        </div>
+                      </td>
+
+                    </tr>
+                  ))}
+
+                </tbody>
+
+              </table>
+            </div>
+
+            {/* =================================================
+                PAGINATION
+            ================================================= */}
+
+            {totalPages > 1 && (
+              <div className="services-pagination">
+
+                <button
+                  type="button"
+                  className="pagination-nav"
+                  onClick={() =>
+                    handlePageChange(currentPage - 1)
+                  }
+                  disabled={currentPage === 1}
+                >
+                  <ChevronLeft size={15} />
+                  Previous
+                </button>
+
+                <div className="pagination-pages">
+
+                  {Array.from(
+                    { length: totalPages },
+                    (_, index) => index + 1
+                  ).map((page) => (
+                    <button
+                      type="button"
+                      key={page}
+                      className={
+                        currentPage === page
+                          ? "active"
+                          : ""
+                      }
+                      onClick={() => handlePageChange(page)}
+                    >
+                      {page}
+                    </button>
+                  ))}
+
+                </div>
+
+                <button
+                  type="button"
+                  className="pagination-nav"
+                  onClick={() =>
+                    handlePageChange(currentPage + 1)
+                  }
+                  disabled={currentPage === totalPages}
+                >
+                  Next
+                  <ChevronRight size={15} />
+                </button>
+
+              </div>
+            )}
+
+          </>
         )}
 
       </div>

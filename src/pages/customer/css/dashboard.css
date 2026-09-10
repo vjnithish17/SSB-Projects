@@ -50,16 +50,21 @@
 .customer-dashboard {
   width: 100%;
   min-height: calc(100vh - 72px);
-
   box-sizing: border-box;
-
   padding: 34px 40px 45px;
 
-  background: linear-gradient(
-    180deg,
-    #fffdfb 0%,
-    #fff8f4 100%
-  );
+  background:
+    radial-gradient(
+      600px circle at 0% 100%,
+      #fc9f538c,
+      transparent 100%
+    ),
+    radial-gradient(
+      500px circle at 100% 0%,
+      #fc9f538c,
+      transparent 100%
+    ),
+    #ffe187a4;
 
   color: var(--text-main);
 }

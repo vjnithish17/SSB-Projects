@@ -24,6 +24,8 @@ const statusOptions = [
   "Cancelled",
 ];
 
+const BOOKINGS_PER_PAGE = 5;
+
 const Bookings = () => {
   const { showToast } = useToast();
 
@@ -31,27 +33,30 @@ const Bookings = () => {
   const [technicians, setTechnicians] = useState([]);
 
   const [loading, setLoading] = useState(true);
-  const [technicianLoading, setTechnicianLoading] =
-    useState(true);
+  const [technicianLoading, setTechnicianLoading] = useState(true);
 
   const [status, setStatus] = useState("");
   const [search, setSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalBookings, setTotalBookings] = useState(0);
 
-  const [selectedTechnicians, setSelectedTechnicians] =
-    useState({});
-
+  const [selectedTechnicians, setSelectedTechnicians] = useState({});
   const [assigningId, setAssigningId] = useState(null);
   const [updatingId, setUpdatingId] = useState(null);
 
   // ==========================================
-  // FETCH BOOKINGS
+  // FETCH BOOKINGS - SERVER SIDE PAGINATION
   // ==========================================
 
-  const fetchBookings = async () => {
+  const fetchBookings = async (page = currentPage) => {
     try {
       setLoading(true);
 
-      const params = {};
+      const params = {
+        page,
+        limit: BOOKINGS_PER_PAGE,
+      };
 
       if (search.trim()) {
         params.search = search.trim();
@@ -66,16 +71,18 @@ const Bookings = () => {
       });
 
       setBookings(res.data.bookings || []);
+      setCurrentPage(res.data.currentPage || page);
+      setTotalPages(res.data.totalPages || 1);
+      setTotalBookings(res.data.total || 0);
     } catch (err) {
       console.error(
         "FETCH BOOKINGS ERROR:",
-        err.response?.data || err.message
+        err.response?.data || err.message,
       );
 
       showToast(
-        err.response?.data?.message ||
-          "Unable to fetch bookings",
-        "error"
+        err.response?.data?.message || "Unable to fetch bookings",
+        "error",
       );
     } finally {
       setLoading(false);
@@ -92,29 +99,31 @@ const Bookings = () => {
 
       const res = await api.get("/technicians");
 
-      setTechnicians(
-        res.data.technicians || []
-      );
+      setTechnicians(res.data.technicians || []);
     } catch (err) {
       console.error(
         "FETCH TECHNICIANS ERROR:",
-        err.response?.data || err.message
+        err.response?.data || err.message,
       );
 
       showToast(
-        err.response?.data?.message ||
-          "Unable to fetch technicians",
-        "error"
+        err.response?.data?.message || "Unable to fetch technicians",
+        "error",
       );
     } finally {
       setTechnicianLoading(false);
     }
   };
 
+  // Load technicians once
   useEffect(() => {
-    fetchBookings();
     fetchTechnicians();
   }, []);
+
+  // Fetch bookings whenever page or status changes
+  useEffect(() => {
+    fetchBookings(currentPage);
+  }, [currentPage, status]);
 
   // ==========================================
   // SEARCH
@@ -122,43 +131,38 @@ const Bookings = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    fetchBookings();
+
+    if (currentPage === 1) {
+      fetchBookings(1);
+    } else {
+      setCurrentPage(1);
+    }
   };
 
   // ==========================================
   // STATUS UPDATE
   // ==========================================
 
-  const updateStatus = async (
-    bookingId,
-    newStatus
-  ) => {
+  const updateStatus = async (bookingId, newStatus) => {
     try {
       setUpdatingId(bookingId);
 
-      await api.put(
-        `/bookings/${bookingId}/status`,
-        {
-          status: newStatus,
-        }
-      );
+      await api.put(`/bookings/${bookingId}/status`, {
+        status: newStatus,
+      });
 
-      showToast(
-        `Booking moved to "${newStatus}"`,
-        "success"
-      );
+      showToast(`Booking moved to "${newStatus}"`, "success");
 
-      await fetchBookings();
+      await fetchBookings(currentPage);
     } catch (err) {
       console.error(
         "UPDATE STATUS ERROR:",
-        err.response?.data || err.message
+        err.response?.data || err.message,
       );
 
       showToast(
-        err.response?.data?.message ||
-          "Unable to update booking",
-        "error"
+        err.response?.data?.message || "Unable to update booking",
+        "error",
       );
     } finally {
       setUpdatingId(null);
@@ -181,9 +185,7 @@ const Bookings = () => {
 
       case "Confirmed":
         return {
-          label: booking.technician
-            ? "Assigned"
-            : "Assign Technician",
+          label: booking.technician ? "Assigned" : "Assign Technician",
           nextStatus: null,
           icon: <UserRoundPlus size={15} />,
           className: booking.technician
@@ -243,10 +245,7 @@ const Bookings = () => {
   // SELECT TECHNICIAN
   // ==========================================
 
-  const handleTechnicianChange = (
-    bookingId,
-    technicianId
-  ) => {
+  const handleTechnicianChange = (bookingId, technicianId) => {
     setSelectedTechnicians((prev) => ({
       ...prev,
       [bookingId]: technicianId,
@@ -258,56 +257,40 @@ const Bookings = () => {
   // ==========================================
 
   const assignTechnician = async (bookingId) => {
-    const technicianId =
-      selectedTechnicians[bookingId];
+    const technicianId = selectedTechnicians[bookingId];
 
     if (!technicianId) {
-      showToast(
-        "Please select a technician first",
-        "warning"
-      );
+      showToast("Please select a technician first", "warning");
       return;
     }
 
     try {
       setAssigningId(bookingId);
 
-      const res = await api.put(
-        `/bookings/${bookingId}/assign`,
-        {
-          technician: technicianId,
-        }
-      );
+      const res = await api.put(`/bookings/${bookingId}/assign`, {
+        technician: technicianId,
+      });
 
-      console.log(
-        "ASSIGN TECHNICIAN RESPONSE:",
-        res.data
-      );
+      console.log("ASSIGN TECHNICIAN RESPONSE:", res.data);
 
-      showToast(
-        "Technician assigned successfully",
-        "success"
-      );
+      showToast("Technician assigned successfully", "success");
 
       setSelectedTechnicians((prev) => {
         const updated = { ...prev };
-
         delete updated[bookingId];
-
         return updated;
       });
 
-      await fetchBookings();
+      await fetchBookings(currentPage);
     } catch (err) {
       console.error(
         "ASSIGN TECHNICIAN ERROR:",
-        err.response?.data || err.message
+        err.response?.data || err.message,
       );
 
       showToast(
-        err.response?.data?.message ||
-          "Unable to assign technician",
-        "error"
+        err.response?.data?.message || "Unable to assign technician",
+        "error",
       );
     } finally {
       setAssigningId(null);
@@ -318,21 +301,17 @@ const Bookings = () => {
   // AVAILABLE TECHNICIANS
   // ==========================================
 
-  const availableTechnicians =
-    technicians.filter(
-      (technician) =>
-        technician.availability === true &&
-        technician.status === "Active"
-    );
+  const availableTechnicians = technicians.filter(
+    (technician) =>
+      technician.availability === true && technician.status === "Active",
+  );
 
   // ==========================================
   // STATUS CLASS
   // ==========================================
 
   const getStatusClass = (value) => {
-    return `status-badge status-${String(
-      value || ""
-    )
+    return `status-badge status-${String(value || "")
       .toLowerCase()
       .replaceAll(" ", "-")}`;
   };
@@ -343,7 +322,6 @@ const Bookings = () => {
 
   return (
     <div className="admin-bookings-page">
-
       {/* ======================================
           HEADER
       ====================================== */}
@@ -354,10 +332,7 @@ const Bookings = () => {
 
           <h1>Booking Management</h1>
 
-          <p>
-            Manage customer bookings and service
-            requests.
-          </p>
+          <p>Manage customer bookings and service requests.</p>
         </div>
       </div>
 
@@ -366,40 +341,28 @@ const Bookings = () => {
       ====================================== */}
 
       <div className="booking-filters">
-
-        <form
-          className="booking-search"
-          onSubmit={handleSearch}
-        >
+        <form className="booking-search" onSubmit={handleSearch}>
           <input
             type="text"
             placeholder="Search bookings..."
             value={search}
-            onChange={(e) =>
-              setSearch(e.target.value)
-            }
+            onChange={(e) => setSearch(e.target.value)}
           />
 
-          <button type="submit">
-            Search
-          </button>
+          <button type="submit">Search</button>
         </form>
 
         <select
           value={status}
-          onChange={(e) =>
-            setStatus(e.target.value)
-          }
+          onChange={(e) => {
+            setStatus(e.target.value);
+            setCurrentPage(1);
+          }}
         >
-          <option value="">
-            All Status
-          </option>
+          <option value="">All Status</option>
 
           {statusOptions.map((item) => (
-            <option
-              key={item}
-              value={item}
-            >
+            <option key={item} value={item}>
               {item}
             </option>
           ))}
@@ -411,39 +374,25 @@ const Bookings = () => {
       ====================================== */}
 
       <div className="admin-bookings-card">
-
         <div className="booking-card-heading">
           <div>
             <h2>All Bookings</h2>
 
-            <p>
-              {bookings.length} bookings
-            </p>
+            <p>{totalBookings} bookings</p>
           </div>
         </div>
 
         {loading ? (
-          <div className="booking-loading">
-            Loading bookings...
-          </div>
+          <div className="booking-loading">Loading bookings...</div>
         ) : bookings.length === 0 ? (
           <div className="booking-empty">
+            <h3>No Bookings Found</h3>
 
-            <h3>
-              No Bookings Found
-            </h3>
-
-            <p>
-              There are no bookings matching
-              your filters.
-            </p>
-
+            <p>There are no bookings matching your filters.</p>
           </div>
         ) : (
           <div className="booking-table-wrapper">
-
             <table className="booking-table">
-
               <thead>
                 <tr>
                   <th>Customer</th>
@@ -457,39 +406,25 @@ const Bookings = () => {
               </thead>
 
               <tbody>
-
                 {bookings.map((booking) => {
-
-                  const workflowAction =
-                    getWorkflowAction(booking);
+                  const workflowAction = getWorkflowAction(booking);
 
                   return (
                     <tr key={booking._id}>
-
                       {/* CUSTOMER */}
 
                       <td>
                         <div className="customer-info">
-
                           <div className="customer-avatar">
-                            {booking.user?.name
-                              ?.charAt(0)
-                              ?.toUpperCase() ||
+                            {booking.user?.name?.charAt(0)?.toUpperCase() ||
                               "U"}
                           </div>
 
                           <div>
-                            <strong>
-                              {booking.user?.name ||
-                                "Unknown"}
-                            </strong>
+                            <strong>{booking.user?.name || "Unknown"}</strong>
 
-                            <small>
-                              {booking.user?.email ||
-                                "-"}
-                            </small>
+                            <small>{booking.user?.email || "-"}</small>
                           </div>
-
                         </div>
                       </td>
 
@@ -497,13 +432,11 @@ const Bookings = () => {
 
                       <td>
                         <strong>
-                          {booking.service?.name ||
-                            "Unknown Service"}
+                          {booking.service?.name || "Unknown Service"}
                         </strong>
 
                         <small className="service-category">
-                          {booking.service?.category ||
-                            "-"}
+                          {booking.service?.category || "-"}
                         </small>
                       </td>
 
@@ -511,9 +444,7 @@ const Bookings = () => {
 
                       <td>
                         {booking.bookingDate
-                          ? new Date(
-                              booking.bookingDate
-                            ).toLocaleString()
+                          ? new Date(booking.bookingDate).toLocaleString()
                           : "-"}
                       </td>
 
@@ -528,60 +459,33 @@ const Bookings = () => {
                       {/* TECHNICIAN */}
 
                       <td>
-
                         {booking.technician ? (
-
                           <div className="assigned-technician">
-
                             <div className="technician-mini-avatar">
-                              {booking
-                                .technician
-                                .name
+                              {booking.technician.name
                                 ?.charAt(0)
-                                ?.toUpperCase() ||
-                                "T"}
+                                ?.toUpperCase() || "T"}
                             </div>
 
                             <div>
-                              <strong>
-                                {
-                                  booking
-                                    .technician
-                                    .name
-                                }
-                              </strong>
+                              <strong>{booking.technician.name}</strong>
 
-                              <small>
-                                {
-                                  booking
-                                    .technician
-                                    .specialization
-                                }
-                              </small>
+                              <small>{booking.technician.specialization}</small>
                             </div>
-
                           </div>
-
                         ) : (
-
                           <div className="assign-box">
-
                             <select
-                              value={
-                                selectedTechnicians[
-                                  booking._id
-                                ] || ""
-                              }
+                              value={selectedTechnicians[booking._id] || ""}
                               onChange={(e) =>
                                 handleTechnicianChange(
                                   booking._id,
-                                  e.target.value
+                                  e.target.value,
                                 )
                               }
                               disabled={
                                 technicianLoading ||
-                                assigningId ===
-                                  booking._id
+                                assigningId === booking._id
                               }
                             >
                               <option value="">
@@ -590,61 +494,38 @@ const Bookings = () => {
                                   : "Select Technician"}
                               </option>
 
-                              {availableTechnicians.map(
-                                (technician) => (
-                                  <option
-                                    key={
-                                      technician._id
-                                    }
-                                    value={
-                                      technician._id
-                                    }
-                                  >
-                                    {technician.name} —{" "}
-                                    {
-                                      technician
-                                        .specialization
-                                    }
-                                  </option>
-                                )
-                              )}
+                              {availableTechnicians.map((technician) => (
+                                <option
+                                  key={technician._id}
+                                  value={technician._id}
+                                >
+                                  {technician.name} —{" "}
+                                  {technician.specialization}
+                                </option>
+                              ))}
                             </select>
 
                             <button
                               type="button"
                               className="assign-btn"
-                              onClick={() =>
-                                assignTechnician(
-                                  booking._id
-                                )
-                              }
+                              onClick={() => assignTechnician(booking._id)}
                               disabled={
-                                assigningId ===
-                                  booking._id ||
-                                !selectedTechnicians[
-                                  booking._id
-                                ]
+                                assigningId === booking._id ||
+                                !selectedTechnicians[booking._id]
                               }
                             >
-                              {assigningId ===
-                              booking._id
+                              {assigningId === booking._id
                                 ? "Assigning..."
                                 : "Assign"}
                             </button>
-
                           </div>
                         )}
-
                       </td>
 
                       {/* STATUS */}
 
                       <td>
-                        <span
-                          className={getStatusClass(
-                            booking.status
-                          )}
-                        >
+                        <span className={getStatusClass(booking.status)}>
                           {booking.status}
                         </span>
                       </td>
@@ -652,68 +533,90 @@ const Bookings = () => {
                       {/* WORKFLOW ACTION */}
 
                       <td>
-
                         {workflowAction ? (
-
                           <button
                             type="button"
                             className={`workflow-action-btn ${workflowAction.className}`}
                             disabled={
-                              updatingId ===
-                                booking._id ||
-                              workflowAction.nextStatus ===
-                                null
+                              updatingId === booking._id ||
+                              workflowAction.nextStatus === null
                             }
                             onClick={() => {
-
-                              if (
-                                workflowAction.nextStatus
-                              ) {
+                              if (workflowAction.nextStatus) {
                                 updateStatus(
                                   booking._id,
-                                  workflowAction.nextStatus
+                                  workflowAction.nextStatus,
                                 );
                               }
-
                             }}
                           >
-
-                            {updatingId ===
-                            booking._id ? (
+                            {updatingId === booking._id ? (
                               "Updating..."
                             ) : (
                               <>
-                                {
-                                  workflowAction.icon
-                                }
+                                {workflowAction.icon}
 
-                                {
-                                  workflowAction.label
-                                }
+                                {workflowAction.label}
                               </>
                             )}
-
                           </button>
-
                         ) : (
-                          <span className="no-action">
-                            —
-                          </span>
+                          <span className="no-action">—</span>
                         )}
-
                       </td>
-
                     </tr>
                   );
                 })}
-
               </tbody>
-
             </table>
-
           </div>
         )}
 
+        {/* PAGINATION */}
+
+        {!loading && totalPages > 1 && (
+          <div className="booking-pagination">
+            <button
+              type="button"
+              className="pagination-nav"
+              onClick={() =>
+                setCurrentPage((prev) => Math.max(prev - 1, 1))
+              }
+              disabled={currentPage === 1}
+            >
+              Previous
+            </button>
+
+            <div className="pagination-pages">
+              {Array.from(
+                { length: totalPages },
+                (_, index) => index + 1,
+              ).map((page) => (
+                <button
+                  type="button"
+                  key={page}
+                  className={currentPage === page ? "active" : ""}
+                  onClick={() => setCurrentPage(page)}
+                >
+                  {page}
+                </button>
+              ))}
+            </div>
+
+            <button
+              type="button"
+              className="pagination-nav"
+              onClick={() =>
+                setCurrentPage((prev) =>
+                  Math.min(prev + 1, totalPages),
+                )
+              }
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
