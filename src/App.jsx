@@ -6,6 +6,8 @@ import Layout from "./components/Layout";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 
+import Home from "./pages/Home";
+
 // ================= CUSTOMER =================
 
 import CustomerDashboard from "./pages/customer/Dashboard";
@@ -172,7 +174,8 @@ function App() {
 
         {/* ================= ROOT ================= */}
 
-        <Route path="/" element={<Navigate to="/login" replace />} />
+        {/* <Route path="/" element={<Navigate to="/login" replace />} /> */}
+        <Route path="/" element={<Home />} />
 
         {/* ================= INVALID ================= */}
 
