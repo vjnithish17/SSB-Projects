@@ -509,17 +509,16 @@ const Home = () => {
           <nav className="ssb-nav-center" aria-label="Main Navigation">
             {[
               { label: "Home", id: "top", key: "home" },
+              { label: "About", id: "about", key: "about" },
               { label: "Services", id: "services", key: "services" },
+              { label: "Offers", id: "offers", key: "offers" },
               {
                 label: "How It Works",
                 id: "how-it-works",
                 key: "how-it-works",
               },
-              { label: "Offers", id: "offers", key: "offers" },
               { label: "Why Us", id: "why-us", key: "why-us" },
-              { label: "Gallery", id: "gallery", key: "gallery" },
-              { label: "About", id: "about", key: "about" },
-              { label: "Contact", id: "contact", key: "contact" },
+              { label: "Portfolio", id: "gallery", key: "gallery" },
             ].map((link) => (
               <button
                 key={link.key}
@@ -575,17 +574,16 @@ const Home = () => {
           <nav className="ssb-mobile-nav-links">
             {[
               { label: "Home", id: "top", key: "home" },
+              { label: "About", id: "about", key: "about" },
               { label: "Services", id: "services", key: "services" },
+              { label: "Offers", id: "offers", key: "offers" },
               {
                 label: "How It Works",
                 id: "how-it-works",
                 key: "how-it-works",
               },
-              { label: "Offers", id: "offers", key: "offers" },
               { label: "Why Us", id: "why-us", key: "why-us" },
-              { label: "Gallery", id: "gallery", key: "gallery" },
-              { label: "About", id: "about", key: "about" },
-              { label: "Contact", id: "contact", key: "contact" },
+              { label: "Portfolio", id: "gallery", key: "gallery" },
             ].map((link) => (
               <button
                 key={link.key}
@@ -739,7 +737,7 @@ const Home = () => {
             </div>
           </div>
         </section>
-          <section className="ssb-section ssb-about-section" id="about">
+        <section className="ssb-section ssb-about-section" id="about">
           <div className="ssb-container ssb-about-grid">
             <div className="ssb-about-left">
               <div className="ssb-about-image-wrap">
@@ -833,7 +831,6 @@ const Home = () => {
           </div>
         </section>
 
-
         {/*
             4. POPULAR SERVICES (8 SERVICES)
              */}
@@ -888,75 +885,62 @@ const Home = () => {
             5. SPECIAL OFFERS
              */}
         <section className="ssb-section ssb-offers-section" id="offers">
-  <div className="ssb-offer-banner">
+          <div className="ssb-offer-banner">
+            <div className="ssb-offer-overlay"></div>
 
-    <div className="ssb-offer-overlay"></div>
+            <div className="ssb-offer-content">
+              <span className="ssb-offer-label">PROMO</span>
 
-    <div className="ssb-offer-content">
+              <h2 className="ssb-offer-title">
+                Discount up to <span>20%</span>
+                <br />
+                for first booking
+              </h2>
 
-      <span className="ssb-offer-label">
-        PROMO
-      </span>
+              <p className="ssb-offer-description">
+                Book your first home service with us and enjoy an exclusive
+                instant discount on your booking.
+              </p>
 
-      <h2 className="ssb-offer-title">
-        Discount up to <span>20%</span>
-        <br />
-        for first booking
-      </h2>
+              <div className="ssb-offer-code-row">
+                <span>Use Code:</span>
+                <strong>FIRST20</strong>
 
-      <p className="ssb-offer-description">
-        Book your first home service with us and enjoy an
-        exclusive instant discount on your booking.
-      </p>
+                <button
+                  className="ssb-offer-copy"
+                  onClick={handleCopyCode}
+                  aria-label="Copy promo code"
+                >
+                  {codeCopied ? (
+                    <>
+                      <Check size={15} />
+                      Copied
+                    </>
+                  ) : (
+                    <>
+                      <Copy size={15} />
+                      Copy
+                    </>
+                  )}
+                </button>
+              </div>
 
-      <div className="ssb-offer-code-row">
-        <span>Use Code:</span>
-        <strong>FIRST20</strong>
+              <button className="ssb-offer-claim" onClick={goToLogin}>
+                <span>Claim Offer</span>
+                <ArrowRight size={18} />
+              </button>
+            </div>
 
-        <button
-          className="ssb-offer-copy"
-          onClick={handleCopyCode}
-          aria-label="Copy promo code"
-        >
-          {codeCopied ? (
-            <>
-              <Check size={15} />
-              Copied
-            </>
-          ) : (
-            <>
-              <Copy size={15} />
-              Copy
-            </>
-          )}
-        </button>
-      </div>
+            <div className="ssb-offer-side-info">
+              <div className="ssb-offer-circle">
+                <span>20%</span>
+                <small>OFF</small>
+              </div>
 
-      <button
-        className="ssb-offer-claim"
-        onClick={goToLogin}
-      >
-        <span>Claim Offer</span>
-        <ArrowRight size={18} />
-      </button>
-
-    </div>
-
-    <div className="ssb-offer-side-info">
-
-      <div className="ssb-offer-circle">
-        <span>20%</span>
-        <small>OFF</small>
-      </div>
-
-      <span className="ssb-offer-side-text">
-        LIMITED TIME
-      </span>
-
-    </div>
-
-  </div>
-</section>
+              <span className="ssb-offer-side-text">LIMITED TIME</span>
+            </div>
+          </div>
+        </section>
 
         {/*
             6. HOW IT WORKS (5 STEPS)
@@ -1228,7 +1212,6 @@ const Home = () => {
             </div>
           </div>
         </section>
-
 
         {/* <section className="ssb-section ssb-contact-section" id="contact">
           <div className="ssb-container ssb-contact-grid">

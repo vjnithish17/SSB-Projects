@@ -241,7 +241,7 @@ img {
    1. NAVBAR
    ========================================================================= */
 .ssb-navbar {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -812,6 +812,7 @@ img {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .ssb-offer-overlay {
