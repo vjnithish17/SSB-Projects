@@ -1105,33 +1105,19 @@
 
 .logout-modal-close {
   position: absolute;
-
   top: 13px;
-
   right: 13px;
-
   width: 32px;
-
   height: 32px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   padding: 0;
-
   border: 0;
-
   border-radius: 8px;
-
   background: transparent;
-
-  color: var(--navy-light);
-
+  /* color: var(--navy-light); */
   cursor: pointer;
-
   transition:
     background 0.2s ease,
     color 0.2s ease;
@@ -1193,9 +1179,6 @@
   margin: 0;
 
   max-width: 320px;
-
-  color: var(--navy-light);
-
   font-size: 13px;
 
   line-height: 1.6;
@@ -1260,14 +1243,12 @@
 
   background: #ffffff;
 
-  color: var(--navy-light);
+  color:coral;
 }
 
 .logout-cancel-btn:hover:not(:disabled) {
   background: #f8fafc;
-
   border-color: #cbd5e1;
-
   color: var(--navy);
 }
 

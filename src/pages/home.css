@@ -462,6 +462,7 @@ img {
   color: var(--navy-900);
   box-shadow: var(--shadow-sm);
   margin-bottom: 20px;
+    margin-top: 44px;
 }
 
 .ssb-pulse-dot {

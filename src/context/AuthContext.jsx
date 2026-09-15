@@ -31,10 +31,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.error("GET CURRENT USER ERROR:", error);
 
-      if (
-        error.response?.status === 401 ||
-        error.response?.status === 403
-      ) {
+      if (error.response?.status === 401 || error.response?.status === 403) {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
 
@@ -63,76 +60,61 @@ export const AuthProvider = ({ children }) => {
 
       setUser(user);
 
-      showToast(
-        `Welcome back, ${user?.name || "User"}!`,
-        "success"
-      );
+      showToast(`Welcome back, ${user?.name || "User"}!`, "success");
 
       return {
         success: true,
         user,
       };
     } catch (error) {
-      console.error(
-        "LOGIN ERROR:",
-        error.response?.data || error.message
-      );
+      console.error("LOGIN ERROR:", error.response?.data || error.message);
 
-      showToast(
-        error.response?.data?.message ||
-          "Invalid email or password",
-        "error"
-      );
+      const status = error.response?.status;
+      const backendMessage = error.response?.data?.message;
 
+      let message = "Invalid email or password";
+
+      if (status === 404) {
+        message = "Email address not found. Please register.";
+      } else if (status === 401) {
+        message = "Incorrect password. Please try again.";
+      } else if (backendMessage) {
+        message = backendMessage;
+      }
+      showToast(message, "error");
       return {
         success: false,
-        message:
-          error.response?.data?.message || "Login failed",
+        message,
       };
     }
   };
-
   // ==============================
   // REGISTER
   // ==============================
 
   const register = async (userData) => {
     try {
-      const response = await api.post(
-        "/auth/register",
-        userData
-      );
+      const response = await api.post("/auth/register", userData);
 
-      const message =
-        response.data.message ||
-        "Registration successful";
+      const message = response.data.message || "Registration successful";
 
-      showToast(
-        "Account created successfully",
-        "success"
-      );
+      showToast("Account created successfully", "success");
 
       return {
         success: true,
         message,
       };
     } catch (error) {
-      console.error(
-        "REGISTER ERROR:",
-        error.response?.data || error.message
-      );
+      console.error("REGISTER ERROR:", error.response?.data || error.message);
 
       showToast(
-        error.response?.data?.message ||
-          "Registration failed",
-        "error"
+        error.response?.data?.message || "Registration failed",
+        "error",
       );
 
       return {
         success: false,
-        message:
-          error.response?.data?.message ||
-          "Registration failed",
+        message: error.response?.data?.message || "Registration failed",
       };
     }
   };

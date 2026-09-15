@@ -53,15 +53,15 @@
   background:
     radial-gradient(
       600px circle at 0% 100%,
-      #fc9f538c,
-      transparent 100%
+      #ffebdcbd,
+      transparent 50%
     ),
     radial-gradient(
       500px circle at 100% 0%,
-      #fc9f538c,
-      transparent 100%
+      #ffebdcbd,
+      transparent 50%
     ),
-    #ffe187a4;
+    #fffefa;
 
   color: var(--text-main);
 }
